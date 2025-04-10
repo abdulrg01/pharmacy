@@ -5,10 +5,29 @@ import { Heart, Search, ShoppingCart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
-import { products } from "@/constant/page";
 
-export default function PharmacyProductGrid() {
+export default function PharmacyProductGrid({ products }) {
   const [favorites, setFavorites] = useState({});
+  const [drugs, setDrugs] = useState("");
+  const [search, setSearch] = useState("");
+
+  const handleDrugsChangeEvent = (e) => {
+    setDrugs(e.target.value);
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearch(value ? value : "");
+  };
+
+  const filteredProducts = products.filter((product) => {
+    const searchCondition = product.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    const drugsCondition = drugs ? product.category === drugs : true;
+
+    return searchCondition && drugsCondition;
+  });
 
   const toggleFavorite = (id) => {
     setFavorites((prev) => ({
@@ -21,30 +40,32 @@ export default function PharmacyProductGrid() {
     <div className="bg-white w-full px-4 py-1 relative">
       <div className="flex items-start flex-row md:gap-10 px-5 mt-5 max-w-7xl mx-auto">
         <div className="mb-6">
-          <label className="mr-4 text-gray-7002">Filter by Category:</label>
+          <label className="mr-4 text-gray-7002">Filter by drugs:</label>
           <select
-            // onChange={handleCategoryChangeEvent}
+            onChange={handleDrugsChangeEvent}
             className="border border-[#035e85] rounded p-2 px-6 md:px-20 text-gray-500"
-            // value={category}
+            value={drugs}
           >
-            <option value="">Collection</option>
-            <option value="earphones">earphones</option>
-            <option value="headphones">headphones</option>
-            <option value="speaker">speaker</option>
-            <option value="watch">watch</option>
-            <option value="laptop">laptop</option>
+            <option value="">Medicine</option>
+            <option value="ulcer">Ulcer</option>
+            <option value="diabetes">Diabetes</option>
+            <option value="pile">Pile</option>
+            <option value="maleria">Maleria</option>
+            <option value="typhoid">Typhoid</option>
           </select>
         </div>
 
         <div className="mb-6">
           <div className="flex items-center w-full md:flex-row flex-col flex-1 pl-4">
             <label className="mr-4 text-gray-700 whitespace-nowrap">
-              Filter by Price:
+              Filter by Search:
             </label>
 
             <div className="flex items-center border border-[#035e85] rounded flex-1 pl-4 text-sm">
               <input
                 type="text"
+                value={search}
+                onChange={handleSearchChange}
                 placeholder="Search in"
                 className="md:w-full w-20 py-2 px-2 focus:outline-none text-gray-800"
               />
@@ -54,7 +75,7 @@ export default function PharmacyProductGrid() {
         </div>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Card
             key={product.id}
             className="border border-gray-200 bg-white rounded-md overflow-hidden"
@@ -90,8 +111,11 @@ export default function PharmacyProductGrid() {
               </Button>
             </CardContent>
             <CardFooter className="flex flex-col items-start p-4 pt-2">
-              <h3 className="text-sm text-black font-medium text-bl line-clamp-2 h-10">
+              <h3 className="text-sm text-black font-medium line-clamp-2 uppercase">
                 {product.name}
+              </h3>
+              <h3 className="text-sm text-black font-medium line-clamp-2 h-10">
+                {product.desc}
               </h3>
               <p className="text-[#035e85] font-bold mt-2">
                 AED {product.price.toFixed(2)}
@@ -99,6 +123,10 @@ export default function PharmacyProductGrid() {
             </CardFooter>
           </Card>
         ))}
+      </div>
+
+      <div className="flex items-center justify-center py-10">
+        <Button className="bg-[#035e85]">View more</Button>
       </div>
       {/* WhatsApp Chat Widget */}
       <a
