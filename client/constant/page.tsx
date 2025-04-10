@@ -1,5 +1,3 @@
-import { List } from "lucide-react";
-
 export const products = [
   {
     id: "1",
@@ -90,11 +88,11 @@ export const categories = [
   },
   {
     name: "Cold & Flu",
-    List: ["cough syrup", "nasal spray", "throat lozenges"],
+    list: ["cough syrup", "nasal spray", "throat lozenges"],
   },
   {
     name: "Allergy",
-    List: ["antihistamines", "nasal sprays", "eye drops"],
+    list: ["antihistamines", "nasal sprays", "eye drops"],
   },
   {
     name: "Digestive Health",
@@ -102,7 +100,7 @@ export const categories = [
   },
   {
     name: "Skin Care",
-    List: ["moisturizers", "sunscreens", "acne treatments"],
+    list: ["moisturizers", "sunscreens", "acne treatments"],
   },
   {
     name: "Vitamins & Supplements",

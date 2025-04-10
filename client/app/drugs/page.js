@@ -11,32 +11,36 @@ export default function page() {
   const [medicine, setMedicine] = useState([]);
   const [drugs, setDrugs] = useState("All");
 
+  let matchedCategory;
+
   useEffect(() => {
-    if (drugs === "All") {
-      setMedicine(products);
-    }
+    let filtered = [...products];
+
     if (drugs !== "All") {
-      setMedicine(products.filter((item) => item.name === drugs));
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(drugs.toLowerCase())
+      );
+    matchedCategory = findMatchingCategory(drugs);;
     }
+
     if (search) {
-      setMedicine(
-        products.filter((item) =>
-          item.name.toLowerCase().includes(search.toLowerCase())
-        )
+      filtered = filtered.filter((item) =>
+        item.name.toLowerCase().includes(search.toLowerCase())
       );
     }
+
+    setMedicine(filtered);
   }, [drugs, search]);
 
   const findMatchingCategory = (productName) => {
-    return categories.find((category) =>
-      category.list.some((item) =>
-        productName.toLowerCase().includes(item.toLowerCase())
-      )
+    return categories.find(
+      (category) =>
+        Array.isArray(category.list) &&
+        category.list.some((item) =>
+          productName.toLowerCase().includes(item.toLowerCase())
+        )
     );
   };
-
-  const matchedCategory = findMatchingCategory(drugs);
-  const bgColor = matchedCategory ? "bg-[#035e85]" : "bg-[#5050cb]";  
 
   return (
     <div>
@@ -52,7 +56,9 @@ export default function page() {
         {categories.map((item, index) => (
           <div key={index}>
             <div
-              className={`h-[35px] ${bgColor} m-3 px-2 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer`}
+              className={`h-[35px] ${
+                drugs === item.name ? "bg-[#035e85]" : "bg-[#5050cb]"
+              } m-3 px-2 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer`}
               onClick={() => setDrugs(item.name)}
             >
               {item.name}
@@ -70,9 +76,7 @@ export default function page() {
       <br />
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-[25px] lg:grid-cols-3 lg:gap-[25px] 1500px:gap-[35px] mb-12 border-0 mt-14">
         {medicine?.map((item, index) => (
-          <>
-            <ProductsCard item={item} key={item.id} />
-          </>
+          <ProductsCard item={item} key={item.id} />
         ))}
       </div>
     </div>

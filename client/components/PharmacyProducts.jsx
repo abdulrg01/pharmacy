@@ -47,7 +47,7 @@ export default function PharmacyProductGrid({ products }) {
             value={drugs}
           >
             <option value="">Medicine</option>
-            <option value="ulcer">Ulcer</option>
+            <option value="Pain Relief">Ulcer</option>
             <option value="diabetes">Diabetes</option>
             <option value="pile">Pile</option>
             <option value="maleria">Maleria</option>

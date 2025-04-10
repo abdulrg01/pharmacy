@@ -1,7 +1,18 @@
+"use client"
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Heart, ShoppingCart } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
+import { Button } from "./ui/button";
 
 export default function ProductsCard({ item }) {
+   const [favorites, setFavorites] = useState({});
+   const toggleFavorite = (id) => {
+    setFavorites((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
   return (
     <Link href={`productDetails/${item.id}`}>
       <Card
