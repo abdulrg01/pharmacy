@@ -111,7 +111,7 @@ export default function PharmacyProductGrid() {
         <div className="flex items-center gap-2 rounded-full bg-[#0692cd] px-5 py-2 text-white shadow-lg">
           <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
             <Image
-              src="/kainuwa/polic1.png"
+              src="/whatsapp.png"
               alt="Customer Service"
               width={40}
               height={40}
