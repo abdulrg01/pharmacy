@@ -1,12 +1,10 @@
 import AnimatedBurger from "./animated-burger";
-import Header from "./Nav";
 import Logos from "./Logos";
 
 export default function HomeSection() {
   return (
-    <div className="py-6 flex flex-col">
+    <div className="py-3 flex flex-col">
       <div className="bg-[#035e85] flex-1 pb-5">
-        <Header />
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
           <div className="w-full md:w-1/2 flex justify-center mt-10">
             <AnimatedBurger />
