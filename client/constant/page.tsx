@@ -1,8 +1,119 @@
+export const drugsData = [
+  {
+    id: 1,
+    name: "Paracetamol 500mg",
+    description: "Pain reliever and fever reducer",
+    price: 5.99,
+    category: "painkillers",
+    image: "/pharmacy/emzor1.png",
+    stock: 150,
+  },
+  {
+    id: 2,
+    name: "Ibuprofen 200mg",
+    description: "Anti-inflammatory pain reliever",
+    price: 6.49,
+    category: "painkillers",
+    image: "/pharmacy/emzor2.png",
+    stock: 200,
+  },
+  {
+    id: 3,
+    name: "Amoxicillin 500mg",
+    description: "Antibiotic for bacterial infections",
+    price: 12.99,
+    category: "antibiotics",
+    image: "/pharmacy/polic2.png",
+    stock: 50,
+  },
+  {
+    id: 4,
+    name: "Cetirizine 10mg",
+    description: "Antihistamine for allergy relief",
+    price: 8.99,
+    category: "allergy",
+    image: "/pharmacy/polic2.png",
+    stock: 75,
+  },
+  {
+    id: 5,
+    name: "Omeprazole 20mg",
+    description: "Reduces stomach acid production",
+    price: 14.99,
+    category: "digestive",
+    image: "/pharmacy/polic2.png",
+    stock: 60,
+  },
+  {
+    id: 6,
+    name: "Aspirin 81mg",
+    description: "Blood thinner and pain reliever",
+    price: 4.99,
+    category: "painkillers",
+    image: "/pharmacy/polic2.png",
+    stock: 120,
+  },
+  {
+    id: 7,
+    name: "Loratadine 10mg",
+    description: "Non-drowsy allergy relief",
+    price: 9.49,
+    category: "allergy",
+    image: "/pharmacy/polic2.png",
+    stock: 90,
+  },
+  {
+    id: 8,
+    name: "Azithromycin 250mg",
+    description: "Antibiotic for respiratory infections",
+    price: 18.99,
+    category: "antibiotics",
+    image: "/pharmacy/polic2.png",
+    stock: 40,
+  },
+  {
+    id: 9,
+    name: "Vitamin D3 1000IU",
+    description: "Supports bone health and immunity",
+    price: 11.99,
+    category: "vitamins",
+    image: "/pharmacy/polic2.png",
+    stock: 150,
+  },
+  {
+    id: 10,
+    name: "Vitamin C 500mg",
+    description: "Supports immune system function",
+    price: 7.99,
+    category: "vitamins",
+    image: "/pharmacy/polic2.png",
+    stock: 200,
+  },
+  {
+    id: 11,
+    name: "Multivitamin Daily",
+    description: "Complete daily nutritional support",
+    price: 15.99,
+    category: "vitamins",
+    image: "/pharmacy/polic2.png",
+    stock: 180,
+  },
+  {
+    id: 12,
+    name: "Ranitidine 150mg",
+    description: "Reduces stomach acid for heartburn relief",
+    price: 10.49,
+    category: "digestive",
+    image: "/pharmacy/polic2.png",
+    stock: 65,
+  },
+];
+
 export const products = [
   {
     id: "1",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *96",
     price: 9.5,
     image: "/pharmacy/emzor1.png",
@@ -10,7 +121,7 @@ export const products = [
   {
     id: "2",
     name: "ibrofen",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emprofen E 200mg Soft Gel 1*10",
     price: 24.0,
     image: "/pharmacy/emzor2.png",
@@ -18,7 +129,7 @@ export const products = [
   {
     id: "3",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *1000",
     price: 12.0,
     image: "/pharmacy/emzor3.png",
@@ -34,7 +145,7 @@ export const products = [
   {
     id: "5",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *1000",
     price: 9.0,
     image: "/pharmacy/polic2.png",
@@ -50,7 +161,7 @@ export const products = [
   {
     id: "7",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *96",
     price: 9.5,
     image: "/pharmacy/emzor1.png",
@@ -58,7 +169,7 @@ export const products = [
   {
     id: "8",
     name: "ibrofen",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emprofen E 200mg Soft Gel 1*10",
     price: 24.0,
     image: "/pharmacy/emzor2.png",
@@ -66,7 +177,7 @@ export const products = [
   {
     id: "9",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *1000",
     price: 12.0,
     image: "/pharmacy/emzor3.png",
@@ -74,7 +185,7 @@ export const products = [
   {
     id: "10",
     name: "paracetamol",
-    category: "Pain Relief",
+    category: "painrelief",
     desc: "Emzor Paracetamol 500mg Tablets *1000",
     price: 12.0,
     image: "/pharmacy/emzor3.png",
@@ -83,11 +194,11 @@ export const products = [
 
 export const categories = [
   {
-    name: "Pain Relief",
+    name: "painrelief",
     list: ["diclofenac", "ibrofen", "paracetamol"],
   },
   {
-    name: "Cold & Flu",
+    name: "Cold&Flu",
     list: ["cough syrup", "nasal spray", "throat lozenges"],
   },
   {
@@ -95,37 +206,37 @@ export const categories = [
     list: ["antihistamines", "nasal sprays", "eye drops"],
   },
   {
-    name: "Digestive Health",
+    name: "DigestiveHealth",
     list: ["antacids", "laxatives", "probiotics"],
   },
   {
-    name: "Skin Care",
+    name: "SkinCare",
     list: ["moisturizers", "sunscreens", "acne treatments"],
   },
   {
-    name: "Vitamins & Supplements",
+    name: "Vitamins&Supplements",
     list: ["multivitamins", "omega-3", "vitamin D"],
   },
   {
-    name: "First Aid",
+    name: "FirstAid",
     list: ["band-aids", "antiseptics", "gauze"],
   },
   {
-    name: "Eye Care",
+    name: "EyeCare",
     list: ["eye drops", "contact lens solution", "eye wash"],
   },
   {
-    name: "Oral Care",
+    name: "OralCare",
     list: ["toothpaste", "mouthwash", "whitening strips"],
   },
   {
-    name: "Foot Care",
+    name: "FootCare",
     list: ["fungal cream", "foot powder", "insoles"],
   },
   {
-    name: "Ear Care",
+    name: "EarCare",
     list: ["ear drops", "ear wax removal"],
-  }
+  },
 ];
 
 export const links = [

@@ -1,16 +1,13 @@
 import FooterSection from "@/components/Footer";
 import HomeSection from "@/components/HomeSection";
-import Logos from "@/components/Logos";
-import PharmacyProductGrid from "@/components/PharmacyProducts";
-import { products } from "@/constant/page";
+import { MedicineStore } from "@/components/MedicineStore";
 
 export default function page() {
   return (
-    <div>
+    <main className="min-h-screen">
       <HomeSection />
-      <Logos />
-      <PharmacyProductGrid products={products} />
+      <MedicineStore />
       <FooterSection />
-    </div>
+    </main>
   );
 }

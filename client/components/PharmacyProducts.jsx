@@ -6,19 +6,35 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 
-export default function PharmacyProductGrid({ products }) {
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { products } from "@/constant/page";
+
+export default function PharmacyProductGrid({
+  searchQuery,
+  setSearchQuery,
+  selectedCategory,
+  setSelectedCategory,
+  categories,
+}) {
   const [favorites, setFavorites] = useState({});
   const [drugs, setDrugs] = useState("");
   const [search, setSearch] = useState("");
 
-  const handleDrugsChangeEvent = (e) => {
-    setDrugs(e.target.value);
-  };
+  // const handleDrugsChangeEvent = (e) => {
+  //   setDrugs(e.target.value);
+  // };
 
-  const handleSearchChange = (e) => {
-    const value = e.target.value;
-    setSearch(value ? value : "");
-  };
+  // const handleSearchChange = (e) => {
+  //   const value = e.target.value;
+  //   setSearch(value ? value : "");
+  // };
 
   const filteredProducts = products.filter((product) => {
     const searchCondition = product.name
@@ -37,8 +53,8 @@ export default function PharmacyProductGrid({ products }) {
   };
 
   return (
-    <div className="bg-white w-full px-4 py-1 relative">
-      <div className="flex items-start flex-row md:gap-10 px-5 mt-5 max-w-7xl mx-auto">
+    <div className="bg-white w-full px-4 py-2 relative">
+      {/* <div className="flex items-start flex-row md:gap-10 px-5 mt-5 max-w-7xl mx-auto">
         <div className="mb-6">
           <label className="mr-4 text-gray-7002">Filter by drugs:</label>
           <select
@@ -73,8 +89,34 @@ export default function PharmacyProductGrid({ products }) {
             </div>
           </div>
         </div>
+      </div> */}
+      <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+        <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+          <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectValue placeholder="Category" />
+          </SelectTrigger>
+          <SelectContent>
+            {/* {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category.charAt(0).toUpperCase() + category.slice(1)}
+              </SelectItem>
+            ))} */}
+          </SelectContent>
+        </Select>
+
+        <div className="relative flex-1">
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+          <Input
+            type="text"
+            placeholder="Search medicines..."
+            className="pl-10"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
       </div>
-      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 pt-5">
         {filteredProducts.map((product) => (
           <Card
             key={product.id}
