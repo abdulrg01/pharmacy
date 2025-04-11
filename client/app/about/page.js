@@ -1,7 +1,12 @@
-import React from 'react'
+import { MedicineStore } from "@/components/MedicineStore";
+import Header from "@/components/Nav";
+import React from "react";
 
 export default function page() {
   return (
-    <div>page</div>
-  )
+    <div>
+      <Header />
+       <MedicineStore />
+    </div>
+  );
 }

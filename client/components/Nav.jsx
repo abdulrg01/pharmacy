@@ -60,7 +60,7 @@ export default function Header() {
           <nav className="hidden md:flex items-center space-x-8">
             <NavItem href="/" label="Home" active />
             <NavItem href="/about" label="About" />
-            <NavItem href="/products" label="Products" />
+            <NavItem href="/drugs" label="Drugs" />
             <NavItem href="/services" label="Services" />
             <NavItem href="/careers" label="Careers" />
             <NavItem href="/contact" label="Contact" />
@@ -130,7 +130,7 @@ export default function Header() {
                 <ul className="space-y-6 py-6">
                   <MobileNavItem href="/" label="Home" active />
                   <MobileNavItem href="/about" label="About" />
-                  <MobileNavItem href="/products" label="Products" />
+                  <MobileNavItem href="/drugs" label="Drugs" />
                   <MobileNavItem href="/services" label="Services" />
                   <MobileNavItem href="/careers" label="Careers" />
                   <MobileNavItem href="/contact" label="Contact" />
