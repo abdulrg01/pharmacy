@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Menu, ShoppingCart, User2, X } from "lucide-react";
+import { Menu, ShoppingBagIcon, ShoppingCart, User2, X } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -21,6 +20,8 @@ import {
   addToCart,
   removeFromCart,
 } from "@/lib/store/cartSlice";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import Link from "next/link";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,32 +68,47 @@ export function Navbar() {
           </Link>
 
           <div className="hidden md:flex items-center space-x-4 font-semibold">
-            <Link href="/" className="text-blue-950 hover:text-blue-900 text-sm">
+            <Link
+              href="/"
+              className="text-blue-950 hover:text-blue-900 text-sm"
+            >
               Home
             </Link>
             <Link
-              href="/products"
+              href="/drugs"
               className="text-blue-950 hover:text-blue-900 text-sm"
             >
-              Products
+              Drugs
             </Link>
-            <Link href="/about" className="text-blue-950 hover:text-blue-900 text-sm">
+            <Link
+              href="/about"
+              className="text-blue-950 hover:text-blue-900 text-sm"
+            >
               About Us
             </Link>
-            <Link href="/contact" className="text-blue-950 hover:text-blue-900 text-sm">
+            <Link
+              href="/contact"
+              className="text-blue-950 hover:text-blue-900 text-sm"
+            >
               Contact Us
             </Link>
-            <Link href="/cart" className="text-blue-950 hover:text-blue-900 text-sm">
+            <Link
+              href="/cart"
+              className="text-blue-950 hover:text-blue-900 text-sm"
+            >
               Cart
             </Link>
-            <Link href="/profile" className="text-blue-950 hover:text-blue-900 text-sm">
+            <Link
+              href="/profile"
+              className="text-blue-950 hover:text-blue-900 text-sm"
+            >
               Profile
             </Link>
           </div>
 
           <div className="flex items-center space-x-4">
-            <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
-              <DropdownMenuTrigger asChild>
+            <Sheet>
+              <SheetTrigger>
                 <Button variant="outline" className="relative">
                   <ShoppingCart className="h-5 w-5" />
                   {totalItems > 0 && (
@@ -101,82 +117,93 @@ export function Navbar() {
                     </span>
                   )}
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-80">
-                {cart.length === 0 ? (
-                  <div className="p-4 text-center text-gray-500">
-                    Your cart is empty
-                  </div>
-                ) : (
-                  <>
-                    <div className="max-h-80 overflow-auto">
-                      {cart.map((item) => (
-                        <DropdownMenuItem
-                          key={item.id}
-                          className="flex items-center p-4 cursor-default"
-                        >
-                          <div className="relative h-12 w-12 mr-3 bg-gray-100 rounded">
-                            <Image
-                              src={item.image || "/placeholder.svg"}
-                              alt={item.name}
-                              fill
-                              className="object-contain p-2"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-medium">{item.name}</p>
-                            <p className="text-sm text-gray-500">
-                              ${item.price.toFixed(2)} x {item.quantity}
-                            </p>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                dispatch(removeFromCart(item.id));
-                              }}
+              </SheetTrigger>
+              <SheetContent className="overflow-auto h-full p-5">
+                <div className="h-full">
+                  <h2 className="text-3xl font-bold mb-6 text-blue-950">
+                    Your Card
+                  </h2>
+                  <div>
+                    {cart.length > 0 ? (
+                      <div>
+                        <div className="grid grid-cols-1 gap-6">
+                          {cart.map((item) => (
+                            <div
+                              key={item.id}
+                              className="bg-white p-4 rounded-lg shadow-md"
                             >
-                              <MinusCircle className="h-4 w-4" />
-                            </Button>
-                            <span className="w-5 text-center">
-                              {item.quantity}
-                            </span>
-                            <Button
-                              variant="ghost"
-                              size="icon"
-                              className="h-7 w-7"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                dispatch(addToCart(item.id));
-                              }}
-                            >
-                              <PlusCircle className="h-4 w-4" />
-                            </Button>
+                              <div className="flex items-center">
+                                <img
+                                  src={item.image || "/placeholder.svg"}
+                                  alt={item.name}
+                                  width={100}
+                                  height={100}
+                                  className="w-24 h-24 object-cover rounded mr-4"
+                                />
+                                <div className="flex-1">
+                                  <Link href={`/products/${item.id}`} passHref>
+                                    <h2 className="text-xl font-bold text-blue-500 cursor-pointer">
+                                      {item.name}
+                                    </h2>
+                                  </Link>
+                                  <p className="text-gray-700">
+                                    {item.description}
+                                  </p>
+                                  <p className="text-gray-900 font-bold">
+                                    ${item.price}
+                                  </p>
+                                  <div className="flex items-center mt-2">
+                                    <button
+                                      className="bg-gray-300 text-gray-900 text-xl rounded p-3"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch(removeFromCart(item.id));
+                                      }}
+                                    >
+                                      <MinusCircle className="h-4 w-4" />
+                                    </button>
+                                    <span className="mx-4">
+                                      {item.quantity}
+                                    </span>
+                                    <button
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        dispatch(addToCart(item.id));
+                                      }}
+                                      className="bg-gray-300 text-gray-900 text-xl rounded p-3"
+                                    >
+                                      <PlusCircle className="h-4 w-4" />
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                        <div className="mt-6">
+                          <div className="flex items-center gap-2">
+                            <h2 className="text-lg font-bold text-gray-950">
+                              Total Amount:
+                            </h2>
+                            <h2 className="text-2xl font-bold text-black">
+                              N{totalPrice.toFixed(2)}
+                            </h2>
                           </div>
-                        </DropdownMenuItem>
-                      ))}
-                    </div>
-                    <div className="p-4 border-t">
-                      <div className="flex justify-between mb-4">
-                        <span className="font-medium">Total:</span>
-                        <span className="font-bold">
-                          ${totalPrice.toFixed(2)}
-                        </span>
+                          <button
+                            className="bg-green-500 text-white px-4 py-2 rounded-full my-5"
+                            onClick={() => router.push("/order")}
+                          >
+                            Proceed to Checkout
+                          </button>
+                        </div>
                       </div>
-                      <Button
-                        className="w-full"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        Confirm Order
-                      </Button>
-                    </div>
-                  </>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                    ) : (
+                      <p className="text-gray-700">Your cart is empty.</p>
+                    )}
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
             <User2 size={20} cursor={"pointer"} />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
