@@ -34,7 +34,7 @@ export default function HomeSection() {
         <Header />
 
         {/* Hero Section */}
-        <div className="container mx-auto px-4 py-8 md:py-10 flex flex-col md:flex-row items-center">
+        <div className="container mx-auto px-4 pt-14 pb-5 md:py-10 flex flex-col md:flex-row items-center">
           {/* Burger Image */}
           <div className="w-full md:w-1/2 flex justify-center md:mt-10">
             <AnimatedBurger />

@@ -125,11 +125,7 @@ export const categories = [
   {
     name: "Ear Care",
     list: ["ear drops", "ear wax removal"],
-  },
-  {
-    name: "Feminine Care",
-    list: ["", "", ""]
-  },
+  }
 ];
 
 export const links = [

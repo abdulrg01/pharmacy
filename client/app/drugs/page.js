@@ -9,60 +9,54 @@ export default function page() {
   const search = searchParams?.get("name");
 
   const [medicine, setMedicine] = useState([]);
-  const [drugs, setDrugs] = useState("All");
-
-  let matchedCategory;
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   useEffect(() => {
     let filtered = [...products];
 
-    if (drugs !== "All") {
-      filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(drugs.toLowerCase())
-      );
-    matchedCategory = findMatchingCategory(drugs);;
+    if (selectedCategory !== "All") {
+      const category = categories.find((cat) => cat.name === selectedCategory);
+
+      if (category && Array.isArray(category.list)) {
+        filtered = filtered.filter((product) =>
+          category.list.some((keyword) =>
+            product.name.toLowerCase().includes(keyword.toLowerCase())
+          )
+        );
+      } else if (selectedCategory === "All") {
+        filtered = products;
+      }
     }
 
     if (search) {
-      filtered = filtered.filter((item) =>
-        item.name.toLowerCase().includes(search.toLowerCase())
+      filtered = filtered.filter((product) =>
+        product.name.toLowerCase().includes(search.toLowerCase())
       );
     }
 
     setMedicine(filtered);
-  }, [drugs, search]);
-
-  const findMatchingCategory = (productName) => {
-    return categories.find(
-      (category) =>
-        Array.isArray(category.list) &&
-        category.list.some((item) =>
-          productName.toLowerCase().includes(item.toLowerCase())
-        )
-    );
-  };
+  }, [selectedCategory, search]);
 
   return (
     <div>
       <div className="w-full flex items-center flex-wrap">
         <div
           className={`h-[35px] ${
-            drugs === "All" ? "bg-[#035e85]" : "bg-[#5050cb]"
+            selectedCategory === "All" ? "bg-[#035e85]" : "bg-[#5050cb]"
           } m-3 px-3 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer`}
-          onClick={() => setDrugs("All")}
+          onClick={() => setSelectedCategory("All")}
         >
           All
         </div>
         {categories.map((item, index) => (
-          <div key={index}>
-            <div
-              className={`h-[35px] ${
-                drugs === item.name ? "bg-[#035e85]" : "bg-[#5050cb]"
-              } m-3 px-2 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer`}
-              onClick={() => setDrugs(item.name)}
-            >
-              {item.name}
-            </div>
+          <div
+            key={index}
+            className={`h-[35px] ${
+              selectedCategory === item.name ? "bg-[#035e85]" : "bg-[#5050cb]"
+            } m-3 px-2 rounded-[30px] flex items-center justify-center font-Poppins cursor-pointer`}
+            onClick={() => setSelectedCategory(item.name)}
+          >
+            {item.name}
           </div>
         ))}
       </div>

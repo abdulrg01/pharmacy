@@ -43,7 +43,7 @@ export default function Header() {
         className={`bg-white w-full z-50 fixed top-0 left-0 right-0 shadow-sm transition-all duration-300`}
       >
         {/* Top red and blue stripes */}
-        <div className="w-full h-2 bg-gradient-to-r from-[#035e85] via-[#035e85] to-blue-900"></div>
+        <div className="w-full h-1 bg-gradient-to-r from-[#035e85] via-[#035e85] to-blue-900"></div>
 
         <div className="flex items-center justify-between md:px-20">
           <div className="flex items-center py-4 px-4">
