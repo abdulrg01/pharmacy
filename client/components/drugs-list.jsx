@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/select";
 import { useState } from "react";
 import { FaWhatsapp } from 'react-icons/fa';
-import Image from "next/image";
 
 export function DrugsList({ drugs }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -29,7 +28,7 @@ export function DrugsList({ drugs }) {
     return matchesSearch && matchesCategory;
   });
 
-  const phoneNumber = "+2348063610782";
+  const phoneNumber = "08063610782";
   const message = encodeURIComponent(
     "Hi! Send the doctor prescription or screenshot of the card."
   );
