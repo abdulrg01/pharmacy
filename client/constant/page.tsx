@@ -1,3 +1,10 @@
+export const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Drug Stores", href: "/drug-stores" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+];
+
 export const drugsData = [
   {
     id: 1,

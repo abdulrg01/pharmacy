@@ -1,16 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, ShoppingBagIcon, ShoppingCart, User2, X } from "lucide-react";
-import Image from "next/image";
+import { Menu, ShoppingCart, User2, X } from "lucide-react";
 
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { PlusCircle, MinusCircle } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import {
@@ -22,14 +15,14 @@ import {
 } from "@/lib/store/cartSlice";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
+import { navLinks } from "@/constant/page";
 
 export function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCartItems);
   const totalItems = useAppSelector(selectTotalItems);
   const totalPrice = useAppSelector(selectTotalPrice);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="bg-white sticky top-0 z-10">
@@ -67,46 +60,22 @@ export function Navbar() {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-4 font-semibold">
-            <Link
-              href="/"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              Home
-            </Link>
-            <Link
-              href="/drugs"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              Drugs
-            </Link>
-            <Link
-              href="/about"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              About Us
-            </Link>
-            <Link
-              href="/contact"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              Contact Us
-            </Link>
-            <Link
-              href="/cart"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              Cart
-            </Link>
-            <Link
-              href="/profile"
-              className="text-blue-950 hover:text-blue-900 text-sm"
-            >
-              Profile
-            </Link>
-          </div>
+          <nav className="hidden md:flex items-center space-x-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors hover:text-[#035e85] ${
+                  pathname === link.href ? "text-[#035e85]" : "text-blue-950"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </nav>
 
           <div className="flex items-center space-x-4">
+            {/* shopping card */}
             <Sheet>
               <SheetTrigger>
                 <Button variant="outline" className="relative">
@@ -204,13 +173,41 @@ export function Navbar() {
                 </div>
               </SheetContent>
             </Sheet>
+            {/* user profile Navigation */}
             <User2 size={20} cursor={"pointer"} />
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-1 rounded-full text-blue-950 hover:bg-gray-100 transition-colors"
-            >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+            {/* Mobile Navigation */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="p-4">
+                <div className="flex flex-col h-full">
+                  <div className="flex items-center justify-between border-b pb-4">
+                    <Link href="/" className="text-xl font-bold text-green-600">
+                      SaukiStore
+                    </Link>
+                  </div>
+                  <nav className="flex flex-col gap-4 mt-8">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.href}
+                        href={link.href}
+                        className={`text-base font-medium transition-colors hover:text-green-600 ${
+                          pathname === link.href
+                            ? "text-green-600"
+                            : "text-gray-600"
+                        }`}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                  </nav>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
