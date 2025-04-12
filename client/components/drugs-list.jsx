@@ -28,7 +28,7 @@ export function DrugsList({ drugs }) {
     return matchesSearch && matchesCategory;
   });
 
-  const phoneNumber = "08063610782";
+  const phoneNumber = "+2348063610782";
   const message = encodeURIComponent(
     "Hi! Send the doctor prescription or screenshot of the card."
   );
