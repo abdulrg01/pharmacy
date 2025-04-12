@@ -16,13 +16,13 @@ export function AboutUs() {
           priority
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <h1 className="mb-4 text-5xl font-bold">Sauki Drug Stores</h1>
+          <h1 className="mb-4 md:text-5xl text-4xl font-bold px-3 text-[#0692cd] whitespace-nowrap">Sauki Drug Stores</h1>
           <div className="flex items-center gap-1 text-lg">
-            <Link href="/" className="hover:underline">
-              About
+            <Link href="/drug-stores" className="hover:underline">
+              Stores
             </Link>
             <ChevronRight className="h-4 w-4" />
-            <span className="text-white/90">Drug Stores</span>
+            <span className="text-[#7b1fa2]">Drug Stores</span>
           </div>
         </div>
       </section>
@@ -30,7 +30,7 @@ export function AboutUs() {
       {/* Search Section */}
       <section className="py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="mb-6 text-4xl font-bold text-[#333]">
+          <h2 className="mb-6 text-4xl font-bold text-blue-950">
             Sauki delivery
           </h2>
           <p className="mb-10 text-lg text-gray-600">
@@ -40,7 +40,7 @@ export function AboutUs() {
 
           {/* Search Bar */}
           <div className="mx-auto max-w-3xl">
-            <div className="h-12 rounded-t-lg bg-[#7b1fa2]"></div>
+            <div className="h-12 rounded-t-lg bg-[#0692cd]"></div>
             {/* Additional search content would go here */}
           </div>
         </div>
@@ -70,7 +70,7 @@ export function AboutUs() {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 py-6">
+      <div className="max-w-3xl mx-auto px-4 py-6 pb-20">
         <div className="prose max-w-none">
           <p className="text-lg mb-4">
             SaukiStore is a leading online pharmacy dedicated to providing
