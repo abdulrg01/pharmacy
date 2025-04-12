@@ -1,6 +1,7 @@
 import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { FaWhatsapp } from "react-icons/fa";
 
 export function AboutUs() {
   return (
@@ -16,7 +17,9 @@ export function AboutUs() {
           priority
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-          <h1 className="mb-4 md:text-5xl text-4xl font-bold px-3 text-[#0692cd] whitespace-nowrap">Sauki Drug Stores</h1>
+          <h1 className="mb-4 md:text-5xl text-4xl font-bold px-3 text-[#0692cd] whitespace-nowrap">
+            Sauki Drug Stores
+          </h1>
           <div className="flex items-center gap-1 text-lg">
             <Link href="/drug-stores" className="hover:underline">
               Stores
@@ -35,7 +38,7 @@ export function AboutUs() {
           </h2>
           <p className="mb-10 text-lg text-gray-600">
             Lafiyarku, Jarinmu. <br /> Zamu kawo maka magani duk inda kake. Yi
-            mana magana ta whatsApp dinmu
+            mana magana ta whatsap dinmu
           </p>
 
           {/* Search Bar */}
@@ -45,30 +48,6 @@ export function AboutUs() {
           </div>
         </div>
       </section>
-
-      {/* WhatsApp Chat Widget */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <div className="flex items-center gap-2 rounded-full bg-[#0692cd] px-6 py-3 text-white shadow-lg">
-          <div className="flex flex-col">
-            <span className="text-xs">Customer Care / Sales Support</span>
-            <span className="text-lg font-semibold">
-              Need help? Chat via whatsApp
-            </span>
-            <span className="rounded bg-[#0692cd] px-2 py-0.5 text-xs text-white">
-              I'm Online
-            </span>
-          </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
-            <Image
-              src="/whatsapp.png"
-              alt="Customer Service"
-              width={40}
-              height={40}
-              className="rounded-full"
-            />
-          </div>
-        </div>
-      </div>
 
       <div className="max-w-3xl mx-auto px-4 py-6 pb-20">
         <div className="prose max-w-none">
@@ -82,7 +61,7 @@ export function AboutUs() {
           <h2 className="text-2xl font-semibold mt-8 mb-4">Our Mission</h2>
           <p>
             Sauki delivery Lafiyarku, Jarinmu. <br /> Zamu kawo maka magani duk
-            inda kake. Yi mana magana ta whatsApp dinmu <br /> Our mission is to
+            inda kake. Yi mana magana ta whatsap dinmu <br /> Our mission is to
             make healthcare accessible to everyone by providing affordable
             medications, exceptional customer service, and reliable health
             information. We believe that everyone deserves access to the

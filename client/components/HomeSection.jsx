@@ -14,7 +14,7 @@ export default function HomeSection() {
               Sauki delivery
             </h1>
             <p className="text-xl max-sm:text-center text-white">
-              Zamu kawo maka magani duk inda kake. Yi mana magana ta whatsApp
+              Zamu kawo maka magani duk inda kake. Yi mana magana ta whatsap
               dinmu
             </p>
             <Logos />
