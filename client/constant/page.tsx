@@ -5,41 +5,48 @@ export const navLinks = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+export const burgerImages = [
+  "/pharmacy/emzor1.png",
+  "/pharmacy/emzor2.png",
+  "/pharmacy/polic1.png",
+  "/pharmacy/polic2.png",
+];
+
 export const drugsData = [
   {
     id: 1,
     name: "Paracetamol 500mg",
     description: "Pain reliever and fever reducer",
-    price: 5.99,
+    price: 150,
     category: "painkillers",
-    image: "/pharmacy/emzor1.png",
+    image: "/pharmacy/paracetamol.webp",
     stock: 150,
   },
   {
     id: 2,
     name: "Ibuprofen 200mg",
     description: "Anti-inflammatory pain reliever",
-    price: 6.49,
+    price: 200,
     category: "painkillers",
-    image: "/pharmacy/emzor2.png",
+    image: "/pharmacy/ibuprofen.webp",
     stock: 200,
   },
   {
     id: 3,
     name: "Amoxicillin 500mg",
     description: "Antibiotic for bacterial infections",
-    price: 12.99,
+    price: 600,
     category: "antibiotics",
-    image: "/pharmacy/polic2.png",
+    image: "/pharmacy/amoxilcap.jpeg",
     stock: 50,
   },
   {
     id: 4,
-    name: "Cetirizine 10mg",
-    description: "Antihistamine for allergy relief",
-    price: 8.99,
-    category: "allergy",
-    image: "/pharmacy/polic2.png",
+    name: "Boska",
+    description: "Pain reliever and fever reducer",
+    price: 500,
+    category: "painkillers",
+    image: "/pharmacy/boska.jpeg",
     stock: 75,
   },
   {

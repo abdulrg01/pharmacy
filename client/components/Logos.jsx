@@ -11,6 +11,15 @@ export default function Logos() {
               <Image src="/pharmacy/pain.jpeg" alt="" width={150} height={150} className="rounded-lg" />
             </div>
             <div className="flex">
+              <Image src="/pharmacy/nasal.jpeg" alt="" width={150} height={150} className="rounded-lg" />
+            </div>
+            <div className="flex">
+              <Image src="/pharmacy/eyedrop.jpeg" alt="" width={150} height={150} className="rounded-lg" />
+            </div>
+            <div className="flex">
+              <Image src="/pharmacy/cold.jpeg" alt="" width={150} height={150} className="rounded-lg" />
+            </div>
+            <div className="flex">
               <Image
                 src="/pharmacy/rashes.jpeg"
                 alt=""

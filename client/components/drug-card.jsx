@@ -93,7 +93,7 @@ export function DrugCard({ drug }) {
         </Badge>
         <h3 className="font-semibold text-lg mb-1">{drug.name}</h3>
         <p className="text-sm text-gray-500 mb-2">{drug.description}</p>
-        <p className="font-bold text-green-600">${drug.price.toFixed(2)}</p>
+        <p className="font-bold text-green-600">N{drug.price.toFixed(2)}</p>
       </CardContent>
       <CardFooter className="p-4 pt-0">
         {quantity === 0 ? (

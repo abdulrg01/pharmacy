@@ -30,7 +30,7 @@ export function DrugsList({ drugs }) {
 
   const phoneNumber = "+2348063610782";
   const message = encodeURIComponent(
-    "Hi! Send the doctor prescription or screenshot of the card."
+    "Hi! Sauki med. I need some drugs."
   );
 
   const handleClick = () => {
@@ -91,9 +91,9 @@ export function DrugsList({ drugs }) {
             <FaWhatsapp className="bg-[#56a747] text-white rounded-full p-2 w-full h-full" />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs">turomin hoton katin maganin anan</span>
+            <span className="text-xs">Turomin hoton katin maganin anan</span>
             <span className="text-sm font-semibold">
-              Chat via whatsap Shiga
+              Chat via whatsap
             </span>
             <span className="rounded bg-[#0692cd] px-2 py-0.5 text-xs text-white">
               I&apos;m Online
