@@ -6,7 +6,7 @@ export default function HomeSection() {
     <div className="py-3 flex flex-col">
       <div className="bg-[#035e85] flex-1 pb-5">
         <div className="container mx-auto px-4 flex flex-col md:flex-row items-center">
-          <div className="w-full md:w-1/2 flex justify-center mt-10">
+          <div className="w-full md:w-1/2 flex justify-center mt-5">
             <AnimatedBurger />
           </div>
           <div className="w-full md:w-1/2 space-y-5 -mt-20 md:mt-0">

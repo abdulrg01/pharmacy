@@ -7,7 +7,7 @@ export default function Logos() {
       <div className="group relative w-full px-1">
         <div className="relative py-6">
           <InfiniteSlider speedOnHover={20} speed={40} gap={40}>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/pain.jpeg"
                 alt=""
@@ -17,7 +17,7 @@ export default function Logos() {
               />
               <p className="text-white font-semibold">Pain</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/nasal.jpeg"
                 alt=""
@@ -25,9 +25,9 @@ export default function Logos() {
                 height={150}
                 className="rounded-lg"
               />
-              <p className="text-white font-semibold">Nasal</p>
+              <p className="text-white font-semibold">Nasal Congestion</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/eyedrop.jpeg"
                 alt=""
@@ -37,7 +37,7 @@ export default function Logos() {
               />
               <p className="text-white font-semibold">Eye drop</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/cold.jpeg"
                 alt=""
@@ -45,9 +45,9 @@ export default function Logos() {
                 height={150}
                 className="rounded-lg"
               />
-              <p className="text-white font-semibold">Cold</p>
+              <p className="text-white font-semibold">Cold & Cough</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/rashes.jpeg"
                 alt=""
@@ -57,7 +57,7 @@ export default function Logos() {
               />
               <p className="text-white font-semibold">Rashes</p>
             </div>
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center gap-1">
               <Image
                 src="/pharmacy/digestion.jpeg"
                 alt=""
