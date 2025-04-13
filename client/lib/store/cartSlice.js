@@ -1,5 +1,5 @@
-import { drugsData } from "@/constant/page";
 import { createSlice } from "@reduxjs/toolkit";
+import { drugsData } from "@/constant/page";
 
 const initialState = {
   items: [],
@@ -41,11 +41,14 @@ export const cartSlice = createSlice({
         }
       }
     },
+    clearCart: (state) => {
+      state.items = [];
+    },
   },
 });
 
 // Export actions
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, clearCart } = cartSlice.actions;
 
 // Selectors
 export const selectCartItems = (state) => state.cart.items;

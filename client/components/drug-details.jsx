@@ -56,7 +56,7 @@ export function DrugDetails({ id }) {
           </Badge>
           <h1 className="text-3xl font-bold mb-2">{drug.name}</h1>
           <p className="text-2xl font-bold text-green-600 mb-4">
-            N{drug.price.toFixed(2)}
+            N{drug.price}
           </p>
 
           <div className="bg-gray-50 p-4 rounded-lg mb-6">

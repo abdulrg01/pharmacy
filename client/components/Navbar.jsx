@@ -1,10 +1,9 @@
 "use client";
 
-import { Menu, ShoppingCart, User2, X } from "lucide-react";
-
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { PlusCircle, MinusCircle } from "lucide-react";
+import { PlusCircle, MinusCircle, User2 } from "lucide-react";
+import { ShoppingCart, Menu, ShoppingBag } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import {
   selectCartItems,
@@ -23,6 +22,12 @@ export function Navbar() {
   const totalItems = useAppSelector(selectTotalItems);
   const totalPrice = useAppSelector(selectTotalPrice);
   const pathname = usePathname();
+  const router = useRouter();
+
+  const handleProceedToCheckout = () => {
+    if (cart.length === 0) return;
+    router.push("/order-confirmation");
+  };
 
   return (
     <header className="bg-white sticky top-0 z-10">
@@ -75,6 +80,14 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center space-x-4">
+            {/* orders */}
+            <Link
+              href="/orders"
+              className="hidden md:flex items-center text-sm font-medium text-gray-600 hover:text-green-600"
+            >
+              <ShoppingBag className="h-5 w-5 mr-2" />
+              Orders
+            </Link>
             {/* shopping card */}
             <Sheet>
               <SheetTrigger>
@@ -87,7 +100,7 @@ export function Navbar() {
                   )}
                 </Button>
               </SheetTrigger>
-              <SheetContent className="overflow-auto h-full p-5">
+              <SheetContent className="overflow-auto h-full p-5 pb-10">
                 <div className="h-full">
                   <h2 className="text-3xl font-bold mb-6 text-blue-950">
                     Your Card
@@ -119,7 +132,7 @@ export function Navbar() {
                                     {item.description}
                                   </p>
                                   <p className="text-gray-900 font-bold">
-                                    ${item.price}
+                                    N{item.price}
                                   </p>
                                   <div className="flex items-center mt-2">
                                     <button
@@ -150,20 +163,20 @@ export function Navbar() {
                           ))}
                         </div>
                         <div className="mt-6">
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 pb-10">
                             <h2 className="text-lg font-bold text-gray-950">
                               Total Amount:
                             </h2>
                             <h2 className="text-2xl font-bold text-black">
-                              N{totalPrice.toFixed(2)}
+                              N{totalPrice}
                             </h2>
                           </div>
-                          <button
-                            className="bg-green-500 text-white px-4 py-2 rounded-full my-5"
-                            onClick={() => router.push("/order")}
+                          <Button
+                            className="w-full bg-green-500"
+                            onClick={handleProceedToCheckout}
                           >
                             Proceed to Checkout
-                          </button>
+                          </Button>
                         </div>
                       </div>
                     ) : (

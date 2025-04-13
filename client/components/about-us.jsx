@@ -7,7 +7,7 @@ export function AboutUs() {
   return (
     <div>
       {/* Hero Section */}
-      <section id="hero-section" className="relative h-[330px] w-full">
+      <section id="hero-section" className="relative h-[250px] w-full">
         <div className="absolute inset-0 bg-black/40"></div>
         <Image
           src="/pharmacy/aboutbg.jpg"
