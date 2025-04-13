@@ -15,6 +15,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import { navLinks } from "@/constant/page";
+import { AnimatedGuideIcon } from "./animated-guid-icon";
 
 export function Navbar() {
   const dispatch = useAppDispatch();
@@ -35,7 +36,7 @@ export function Navbar() {
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
-            <div className="mr-2">
+            {/* <div className="mr-2">
               <svg
                 width="60"
                 height="60"
@@ -56,7 +57,7 @@ export function Navbar() {
                   fill="#2B3990"
                 />
               </svg>
-            </div>
+            </div> */}
             <div>
               <h3 className="text-blue-950 text-xl font-bold">SAUKI</h3>
               <p className="text-[#035e85] text-xs tracking-wider font-bold">
@@ -80,6 +81,10 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center space-x-4">
+            {/* animated icon */}
+            <div>
+              <AnimatedGuideIcon />
+            </div>
             {/* orders */}
             <Link
               href="/orders"
