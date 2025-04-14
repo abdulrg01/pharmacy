@@ -2,6 +2,8 @@ import { Inter } from "next/font/google";
 import { Providers } from "@/lib/store/providers";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
+import { AnimatedGuideIcon } from "@/components/animated-guid-icon";
+import { WhatsappButton } from "@/components/whatsapp-button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +21,11 @@ export default function RootLayout({ children }) {
           <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-1">{children}</main>
+            <AnimatedGuideIcon />
+            <WhatsappButton />
           </div>
         </Providers>
       </body>
     </html>
-  )
+  );
 }
