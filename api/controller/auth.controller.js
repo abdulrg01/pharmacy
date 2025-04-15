@@ -5,75 +5,75 @@ const {
 } = require("../service/auth.service");
 const jwt = require("jsonwebtoken");
 
-const newUser = async (req, res) => {
+const authHandler = async (req, res) => {
   const { name, email, password, avatar } = req.body;
+  if (!email || !password) {
+    return res.status(400).json({ message: "Email and password are required" });
+  }
 
   try {
-    if (!name || !email || !password) {
-      return res.status(400).json({ message: "All fields are required" });
+    const existingUser = await User.findOne({ email });
+
+    if (!existingUser) {
+      // Create user (Signup)
+      if (!name)
+        return res.status(400).json({ message: "Name is required for signup" });
+
+      const newUser = await User.create({ name, email, password, avatar });
+
+      const token = generateAccessToken(newUser);
+      const refreshToken = generateRefreshToken(newUser);
+
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+
+      const createdUser = await User.findById(newUser._id).select("-password");
+
+      return res.status(201).json({
+        success: true,
+        user: createdUser,
+        token,
+        message: "User created successfully",
+      });
+    } else {
+      // Login
+      const match = await existingUser.matchPassword(password);
+      if (!match)
+        return res.status(400).json({ message: "Incorrect password" });
+
+      const token = generateAccessToken(existingUser);
+      const refreshToken = generateRefreshToken(existingUser);
+
+      res.cookie("jwt", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+
+      const userInfo = await User.findById(existingUser._id).select(
+        "-password"
+      );
+
+      return res.json({
+        success: true,
+        user: userInfo,
+        token,
+        message: "Logged in successfully",
+      });
     }
-
-    const existingUser = await User.findOne({ email }).exec();
-    if (existingUser) {
-      return res.status(409).json({ message: "User already exists" });
-    }
-
-    const user = await User.create({ name, email, password, avatar });
-
-    const token = generateAccessToken(user);
-    const refreshToken = generateRefreshToken(user);
-
-    res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    const createdUser = await User.findById(user._id).select("-password");
-
-    res.status(201).json({
-      success: true,
-      user: createdUser,
-      token,
-    });
   } catch (error) {
-    console.error("New User Creation Error:", error);
+    console.error("Auth Error:", error);
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
 
-const login = async (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password)
-    return res.status(400).json({ message: "All fields are required" });
-
-  const foundUser = await User.findOne({ email });
-
-  if (!foundUser) return res.status(401).json({ message: "Unauthorized" });
-
-  const match = await foundUser.matchPassword(password);
-  if (!match) return res.status(400).json({ message: "Incorrect password" });
-
-  const token = generateAccessToken(foundUser);
-  const refreshToken = generateRefreshToken(foundUser);
-
-  res.cookie("jwt", refreshToken, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
-
-  const userInfo = await User.findById(foundUser._id).select("-password");
-
-  res.json({ user: userInfo, token });
-};
-
 const socialAuth = async (req, res) => {
   const { name, email, avatar } = req.body;
-
   try {
     let user = await User.findOne({ email }).exec();
 
@@ -124,4 +124,4 @@ const refresh = async (req, res) => {
   );
 };
 
-module.exports = { login, refresh, socialAuth, newUser };
+module.exports = { authHandler, refresh, socialAuth };

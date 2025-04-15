@@ -15,25 +15,55 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Link from "next/link";
 import { navLinks } from "@/constant/page";
-import { AnimatedGuideIcon } from "./animated-guid-icon";
+import SigninDialog from "./SigninDialog";
+import { useEffect, useState } from "react";
+import { getUserProfile } from "@/lib/api";
+import Image from "next/image";
 
 export function Navbar() {
   const dispatch = useAppDispatch();
   const cart = useAppSelector(selectCartItems);
   const totalItems = useAppSelector(selectTotalItems);
   const totalPrice = useAppSelector(selectTotalPrice);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [user, setUser] = useState();
   const pathname = usePathname();
   const router = useRouter();
 
-  const handleProceedToCheckout = () => {
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const userData = await getUserProfile();
+        setUser(userData);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  const handleProceedToCheckout = async () => {
     if (cart.length === 0) return;
-    router.push("/order-confirmation");
+
+    try {
+      const userData = await getUserProfile();
+      // Proceed if the user is valid
+      router.push("/order-confirmation");
+    } catch (error) {
+      if (
+        error?.message === "Failed to fetch user profile" ||
+        error?.response?.status === 403
+      ) {
+        setOpenDialog(true);
+      }
+    }
   };
 
   return (
     <header className="bg-white sticky top-0 z-10">
       <div className="w-full h-1 bg-gradient-to-r from-[#035e85] via-[#035e85] to-blue-950"></div>
-      <div className="container mx-auto px-4 py-2">
+      <div className="w-full px-2 py-2">
         <div className="flex items-center justify-between">
           <Link href="/" className="flex items-center">
             <div className="mr-2">
@@ -89,6 +119,16 @@ export function Navbar() {
               <ShoppingBag className="h-5 w-5 mr-2" />
               Orders
             </Link>
+            {/* All Orders Admin */}
+            {user && user.user?.isAdmin && (
+              <Link
+                href="/allorders"
+                className="hidden md:flex items-center text-sm font-medium text-gray-600 hover:text-green-600"
+              >
+                <ShoppingBag className="h-5 w-5 mr-2" />
+                All Orders
+              </Link>
+            )}
             {/* shopping card */}
             <Sheet>
               <SheetTrigger>
@@ -188,7 +228,22 @@ export function Navbar() {
               </SheetContent>
             </Sheet>
             {/* user profile Navigation */}
-            <User2 size={20} cursor={"pointer"} />
+            <div>
+              {user ? (
+                <Link href="/orders">
+                  <Image
+                    src={user?.avatar || "/vercel.svg"}
+                    alt={user?.name}
+                    width={20}
+                    height={20}
+                  />
+                </Link>
+              ) : (
+                <div onClick={() => setOpenDialog(true)}>
+                  <User2 size={20} cursor={"pointer"} />
+                </div>
+              )}
+            </div>
             {/* Mobile Navigation */}
             <Sheet>
               <SheetTrigger asChild>
@@ -204,7 +259,7 @@ export function Navbar() {
                       SaukiStore
                     </Link>
                   </div>
-                  <nav className="flex flex-col gap-4 mt-8">
+                  <nav className="flex flex-col gap-4 mt-8 mb-3">
                     {navLinks.map((link) => (
                       <Link
                         key={link.href}
@@ -219,12 +274,25 @@ export function Navbar() {
                       </Link>
                     ))}
                   </nav>
+                  {user && user.user?.isAdmin && (
+                    <Link
+                      href="/allorders"
+                      className="flex items-center text-base font-medium text-gray-600 hover:text-green-600"
+                    >
+                      <ShoppingBag className="h-5 w-5 mr-2" />
+                      All Orders
+                    </Link>
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
           </div>
         </div>
       </div>
+      <SigninDialog
+        openDialog={openDialog}
+        closeDialog={(v) => setOpenDialog(v)}
+      />
     </header>
   );
 }

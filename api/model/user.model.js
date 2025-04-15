@@ -20,25 +20,14 @@ const userSchema = new mongoose.Schema({
   avatar: {
     type: String,
   },
-  products: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Product",
-      required: true,
-    },
-  ],
-  comments: [
-    {
-      text: {
-        type: String,
-        required: true,
-      },
-      createdAt: {
-        type: Date,
-        default: Date.now,
-      },
-    },
-  ],
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  },
+  address: {
+    street: String,
+    phone: String,
+  },
 });
 
 userSchema.pre("save", async function (next) {

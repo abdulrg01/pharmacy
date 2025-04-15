@@ -1,0 +1,2 @@
+20250414	06:31:47	f3dbe4b3-23e7-459c-9121-bcaa6e72c2bc	SyntaxError: Unexpected number in JSON at position 172	POST	/auth/login	undefined
+20250414	06:32:59	8a3890ca-d500-4066-8517-eb0f9225b67e	SyntaxError: Unexpected number in JSON at position 172	POST	/auth/register	undefined

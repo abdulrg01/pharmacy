@@ -37,12 +37,8 @@ app.use("/", express.static(path.join(__dirname, "public")));
 app.use("/", require("./routes/root.routes"));
 app.use("/users", require("./routes/user.routes"));
 app.use("/auth", require("./routes/auth.routes"));
-app.use("/products", require("./routes/product.routes"));
-
-app.use("/images", require("./routes/image.routes"));
-app.use("/notifications", require("./routes/notification.routes"));
-app.use("/search", require("./routes/search.routes"));
-app.use("/admin", require("./routes/admin.routes"));
+app.use("/review", require("./routes/review.routes"));
+app.use("/order", require("./routes/order.routes"));
 
 app.all("*", (req, res) => {
   res.status(404);
