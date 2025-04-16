@@ -1,2 +1,5 @@
 20250414	06:31:47	f3dbe4b3-23e7-459c-9121-bcaa6e72c2bc	SyntaxError: Unexpected number in JSON at position 172	POST	/auth/login	undefined
 20250414	06:32:59	8a3890ca-d500-4066-8517-eb0f9225b67e	SyntaxError: Unexpected number in JSON at position 172	POST	/auth/register	undefined
+20250416	04:35:29	eecb8f08-6c41-484d-860f-fa07ea57f7bb	SyntaxError: Unexpected token '"', ""Alhamduli"... is not valid JSON	POST	/review	http://localhost:3000
+20250416	04:40:08	62e05b84-6e97-48ac-8d3a-d4aafd7e00e5	SyntaxError: Unexpected token 'N', "Naansa mag"... is not valid JSON	POST	/review	http://localhost:3000
+20250416	04:42:47	6b662e3a-8ac9-40b0-a72a-9a8fed88f0fb	SyntaxError: Unexpected token 'N', "Na ansa ma"... is not valid JSON	POST	/review	http://localhost:3000

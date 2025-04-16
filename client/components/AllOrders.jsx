@@ -16,12 +16,7 @@ export default function AllOrders() {
         console.log("AllOrders:", ordersData);
         setOrders(ordersData);
       } catch (error) {
-        if (
-          error?.message === "Failed to fetch user profile" ||
-          error?.response?.status === 403
-        ) {
-          setOpenDialog(true);
-        }
+        console.log("Order fetch error:", error);
       }
     };
 

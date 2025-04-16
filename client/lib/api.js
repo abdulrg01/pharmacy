@@ -111,8 +111,46 @@ export const getAllOrders = async () => {
 export const updateOrderStatus = async (id, status) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch(`http://localhost:3500/order/${id}/${status}`, {
-      method: "PUT",
+    const response = await fetch(
+      `http://localhost:3500/order/${id}/${status}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Order Creation Error:", error);
+    throw error;
+  }
+};
+
+export const addComment = async (comment) => {
+  const token = localStorage.getItem("token");
+  const res = await fetch(`http://localhost:3500/review`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ comment }), // ✅ send as JSON object
+  });
+
+  if (!res.ok) throw new Error("Add comment error");
+  return res.json();
+};
+
+// Admin
+export const getAllReviews = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch("http://localhost:3500/review", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -126,3 +164,4 @@ export const updateOrderStatus = async (id, status) => {
     throw error;
   }
 };
+

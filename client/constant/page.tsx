@@ -3,7 +3,6 @@ export const navLinks = [
   { name: "Drug Stores", href: "/drug-stores" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
-  { name: "Orders", href: "/orders" },
 ];
 
 export const burgerImages = [

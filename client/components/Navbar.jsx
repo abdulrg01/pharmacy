@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, MinusCircle, User2 } from "lucide-react";
-import { ShoppingCart, Menu, ShoppingBag } from "lucide-react";
+import { ShoppingCart, Menu } from "lucide-react";
 import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
 import {
   selectCartItems,
@@ -13,12 +13,17 @@ import {
   removeFromCart,
 } from "@/lib/store/cartSlice";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import Link from "next/link";
 import { navLinks } from "@/constant/page";
 import SigninDialog from "./SigninDialog";
 import { useEffect, useState } from "react";
 import { getUserProfile } from "@/lib/api";
-import Image from "next/image";
+import AddComment from "./AddComment";
 
 export function Navbar() {
   const dispatch = useAppDispatch();
@@ -26,7 +31,9 @@ export function Navbar() {
   const totalItems = useAppSelector(selectTotalItems);
   const totalPrice = useAppSelector(selectTotalPrice);
   const [openDialog, setOpenDialog] = useState(false);
+  const [addCommentDialog, setAddCommentDialog] = useState(false);
   const [user, setUser] = useState();
+  const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -68,8 +75,8 @@ export function Navbar() {
           <Link href="/" className="flex items-center">
             <div className="mr-2">
               <svg
-                width="60"
-                height="60"
+                width="40"
+                height="40"
                 viewBox="0 0 60 60"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -90,8 +97,8 @@ export function Navbar() {
             </div>
             <div>
               <h3 className="text-blue-950 text-xl font-bold">SAUKI</h3>
-              <p className="text-[#035e85] text-xs tracking-wider font-bold">
-                PHARMACEUTICAL LTD
+              <p className="text-[#035e85] text-xs tracking-wide uppercase font-bold">
+                Medicine Store
               </p>
             </div>
           </Link>
@@ -110,25 +117,7 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center space-x-4">
-            {/* orders */}
-            <Link
-              href="/orders"
-              className="hidden md:flex items-center text-sm font-medium text-gray-600 hover:text-green-600"
-            >
-              <ShoppingBag className="h-5 w-5 mr-2" />
-              Orders
-            </Link>
-            {/* All Orders Admin */}
-            {user && user.user?.isAdmin && (
-              <Link
-                href="/allorders"
-                className="hidden md:flex items-center text-sm font-medium text-gray-600 hover:text-green-600"
-              >
-                <ShoppingBag className="h-5 w-5 mr-2" />
-                All Orders
-              </Link>
-            )}
+          <div className="flex items-center space-x-2 px-2">
             {/* shopping card */}
             <Sheet>
               <SheetTrigger>
@@ -230,14 +219,94 @@ export function Navbar() {
             {/* user profile Navigation */}
             <div>
               {user ? (
-                <Link href="/orders">
-                  <Image
-                    src={user?.avatar || "/vercel.svg"}
-                    alt={user?.name}
-                    width={20}
-                    height={20}
-                  />
-                </Link>
+                <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+                  <DropdownMenuTrigger asChild>
+                    <button
+                      type="button"
+                      className="inline-flex items-center rounded-lg justify-center p-1 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white"
+                    >
+                      <svg
+                        className="w-5 h-5 me-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-width="2"
+                          d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                        />
+                      </svg>
+                      Account
+                      <svg
+                        className="w-4 h-4 text-gray-900 dark:text-white ms-1"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke="currentColor"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="m19 9-7 7-7-7"
+                        />
+                      </svg>
+                    </button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-80">
+                    <div className="z-10 divide-y divide-gray-100 max-h-80 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
+                      <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                        <li>
+                          <a
+                            href="/orders"
+                            className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                          >
+                            My Orders
+                          </a>
+                        </li>
+                        {user && user.user?.isAdmin && (
+                          <li>
+                            <a
+                              href="/allorders"
+                              className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                            >
+                              All Orders
+                            </a>
+                          </li>
+                        )}
+                        {user && user.user?.isAdmin && (
+                          <li>
+                            <a
+                              href="/allReviews"
+                              className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                            >
+                              All Reviews
+                            </a>
+                          </li>
+                        )}
+                      </ul>
+
+                      <div
+                        onClick={() => setAddCommentDialog(true)}
+                        className="p-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        <a
+                          href="#"
+                          className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                        >
+                          Add a Review
+                        </a>
+                      </div>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               ) : (
                 <div onClick={() => setOpenDialog(true)}>
                   <User2 size={20} cursor={"pointer"} />
@@ -277,10 +346,17 @@ export function Navbar() {
                   {user && user.user?.isAdmin && (
                     <Link
                       href="/allorders"
-                      className="flex items-center text-base font-medium text-gray-600 hover:text-green-600"
+                      className="text-base font-medium text-gray-600 hover:text-green-600 mb-3"
                     >
-                      <ShoppingBag className="h-5 w-5 mr-2" />
                       All Orders
+                    </Link>
+                  )}
+                  {user && user.user?.isAdmin && (
+                    <Link
+                      href="/allReviews"
+                      className="text-base font-medium text-gray-600 hover:text-green-600"
+                    >
+                      All Reviews
                     </Link>
                   )}
                 </div>
@@ -292,6 +368,10 @@ export function Navbar() {
       <SigninDialog
         openDialog={openDialog}
         closeDialog={(v) => setOpenDialog(v)}
+      />
+      <AddComment
+        addCommentDialog={addCommentDialog}
+        closeCommentDialog={(v) => setAddCommentDialog(v)}
       />
     </header>
   );

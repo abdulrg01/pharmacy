@@ -4,7 +4,6 @@ const { createReview, getAllReview } = require("../controller/review.controller"
 const verifyJWT = require("../middleware/verifyJwt");
 const { adminOnly } = require("../middleware/authMiddleware");
 
-// Create order
 router.post("/", verifyJWT, createReview);
 
 // (admin)
