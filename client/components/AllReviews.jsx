@@ -64,7 +64,7 @@ export default function AllReviews() {
                   </div>
                 </div>
                 <div className="py-5">
-                  <p className="text-base text-gray-200">{review.comment}</p>
+                  <p className="text-base text-blue-950">{review.comment}</p>
                 </div>
               </div>
             </div>

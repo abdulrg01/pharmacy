@@ -34,6 +34,7 @@ export default function SigninDialog({ openDialog, closeDialog }) {
       });
       console.log(data);
       localStorage.setItem("token", data.token);
+      router.refresh();
       closeDialog(false);
     },
     onError: (errorResponse) => console.log(errorResponse),
