@@ -34,7 +34,7 @@ export default function SigninDialog({ openDialog, closeDialog }) {
       });
       console.log(data);
       localStorage.setItem("token", data.token);
-      router.refresh();
+      window.location.reload();
       closeDialog(false);
     },
     onError: (errorResponse) => console.log(errorResponse),
@@ -48,7 +48,7 @@ export default function SigninDialog({ openDialog, closeDialog }) {
     try {
       const data = await loginUser(form);
       localStorage.setItem("token", data.token);
-      router.refresh();
+      window.location.reload();
       closeDialog(false);
     } catch (err) {
       alert(err.message);
@@ -148,7 +148,7 @@ export default function SigninDialog({ openDialog, closeDialog }) {
                     />
                   </div>
 
-                  <Button className="w-full">Continue</Button>
+                  <Button className="w-full bg-blue-500 text-white hover:bg-blue-400">Continue</Button>
                 </div>
               </form>
             </div>
