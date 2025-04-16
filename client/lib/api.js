@@ -1,20 +1,26 @@
 export const loginUser = async (userData) => {
-  const res = await fetch("http://localhost:3500/auth/login", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userData),
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/login`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    }
+  );
 
   if (!res.ok) throw new Error("Login failed");
   return res.json();
 };
 
 export const socialAuth = async (userData) => {
-  const res = await fetch("http://localhost:3500/auth/social", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(userData),
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/social`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userData),
+    }
+  );
 
   if (!res.ok) throw new Error("Login failed");
   return res.json();
@@ -23,11 +29,14 @@ export const socialAuth = async (userData) => {
 export const getUserProfile = async () => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch("http://localhost:3500/users/profile", {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/users/profile`,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   if (!res.ok) throw new Error("Failed to fetch user profile");
   return res.json();
@@ -36,13 +45,16 @@ export const getUserProfile = async () => {
 export const getRefreshToken = async () => {
   const token = localStorage.getItem("token");
 
-  const res = await fetch("http://localhost:3500/auth/refresh", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/auth/refresh`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
 
   if (!res.ok) throw new Error("Failed to fetch user profile");
   return res.json();
@@ -51,14 +63,17 @@ export const getRefreshToken = async () => {
 export const createOrder = async (orderData) => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch("http://localhost:3500/order", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(orderData),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/order`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(orderData),
+      }
+    );
 
     const data = await response.json();
     return data;
@@ -71,13 +86,16 @@ export const createOrder = async (orderData) => {
 export const getMyOrdersApi = async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch("http://localhost:3500/order/my", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/order/my`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
     return data;
@@ -91,13 +109,16 @@ export const getMyOrdersApi = async () => {
 export const getAllOrders = async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch("http://localhost:3500/order", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/order`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
     return data;
@@ -112,7 +133,7 @@ export const updateOrderStatus = async (id, status) => {
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(
-      `http://localhost:3500/order/${id}/${status}`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/order/${id}/${status}`,
       {
         method: "PUT",
         headers: {
@@ -132,7 +153,7 @@ export const updateOrderStatus = async (id, status) => {
 
 export const addComment = async (comment) => {
   const token = localStorage.getItem("token");
-  const res = await fetch(`http://localhost:3500/review`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_BASE_URL}/review`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -149,13 +170,16 @@ export const addComment = async (comment) => {
 export const getAllReviews = async () => {
   const token = localStorage.getItem("token");
   try {
-    const response = await fetch("http://localhost:3500/review", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/review`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
 
     const data = await response.json();
     return data;
@@ -164,4 +188,3 @@ export const getAllReviews = async () => {
     throw error;
   }
 };
-
