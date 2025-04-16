@@ -3,3 +3,4 @@
 20250416	04:35:29	eecb8f08-6c41-484d-860f-fa07ea57f7bb	SyntaxError: Unexpected token '"', ""Alhamduli"... is not valid JSON	POST	/review	http://localhost:3000
 20250416	04:40:08	62e05b84-6e97-48ac-8d3a-d4aafd7e00e5	SyntaxError: Unexpected token 'N', "Naansa mag"... is not valid JSON	POST	/review	http://localhost:3000
 20250416	04:42:47	6b662e3a-8ac9-40b0-a72a-9a8fed88f0fb	SyntaxError: Unexpected token 'N', "Na ansa ma"... is not valid JSON	POST	/review	http://localhost:3000
+20250416	05:32:10	9c34540f-5aeb-408f-ba9e-43b641129f31	Error: Not allowed by CORS	OPTIONS	/users/profile	https://saukimed.vercel.app
