@@ -148,12 +148,14 @@ export function OrderConfirmation() {
                     onChange={handleChange}
                   />
                 </div>
-                <div className="flex justify-between mb-2">
-                  <span className="text-gray-600">Subtotal:</span>
+                <div className="flex justify-between my-2">
+                  <span className="text-gray-600">Total:</span>
                   <span className="font-medium">N{totalPrice}</span>
                 </div>
                 <div className="flex justify-between pt-4 border-t mt-4">
-                  <span className="text-lg font-semibold">Total:</span>
+                  <span className="text-lg font-semibold">
+                    Kudin da zaka biya:
+                  </span>
                   <span className="text-lg font-bold">
                     N{totalPrice + totalPrice * 0.2}
                   </span>
