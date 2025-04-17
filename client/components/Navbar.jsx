@@ -22,7 +22,12 @@ import Link from "next/link";
 import { navLinks } from "@/constant/page";
 import SigninDialog from "./SigninDialog";
 import { useEffect, useState } from "react";
-import { getUserProfile } from "@/lib/api";
+import { IoMdNotifications } from "react-icons/io";
+import {
+  getAllNotifications,
+  getUserProfile,
+  updateNotification,
+} from "@/lib/api";
 import AddComment from "./AddComment";
 
 export function Navbar() {
@@ -34,6 +39,8 @@ export function Navbar() {
   const [addCommentDialog, setAddCommentDialog] = useState(false);
   const [user, setUser] = useState();
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenNotification, setIsOpenNotification] = useState(false);
+  const [notifications, setNotifications] = useState([]);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -48,6 +55,24 @@ export function Navbar() {
     };
 
     fetchUser();
+  }, []);
+
+  useEffect(() => {
+    const fetchNotification = async () => {
+      try {
+        const notificationData = await getAllNotifications();
+        console.log("AllNotification:", notificationData);
+        setNotifications(
+          notificationData.notification.filter(
+            (item) => item.status === "unread"
+          )
+        );
+      } catch (error) {
+        console.log("Review fetch error:", error);
+      }
+    };
+
+    fetchNotification();
   }, []);
 
   const handleProceedToCheckout = async () => {
@@ -65,6 +90,10 @@ export function Navbar() {
         setOpenDialog(true);
       }
     }
+  };
+
+  const handleNotificationStatusChange = async (id) => {
+    await updateNotification(id);
   };
 
   return (
@@ -118,6 +147,64 @@ export function Navbar() {
           </nav>
 
           <div className="flex items-center space-x-2 px-2">
+            {/* Notification */}
+            <div>
+              {user && (
+                <DropdownMenu
+                  open={isOpenNotification}
+                  onOpenChange={setIsOpenNotification}
+                >
+                  <DropdownMenuTrigger asChild>
+                    <div className="relative cursor-pointer m-2">
+                      <IoMdNotifications className="text-2xl cursor-pointer dark:text-white text-black" />
+                      <span className=" absolute -top-2 -right-2 bg-red-500 rounded-full w-[20px] text-[12px] flex items-center justify-center text-white">
+                        {notifications && notifications?.length}
+                      </span>
+                    </div>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end" className="w-80">
+                    <div className="z-10 divide-y divide-gray-100 max-h-80 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
+                      <ul className="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
+                        <li>
+                          <a
+                            href="/orders"
+                            className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                          >
+                            New notification
+                          </a>
+                        </li>
+                        {user?.user?.isAdmin &&
+                          notifications?.map((item, index) => (
+                            <div key={index}>
+                              <div className="flex items-center mb-3 px-4">
+                                <p className="mb-1 text-sm font-semibold text-gray-900 dark:text-white">
+                                  {item.title}
+                                </p>
+                                <p
+                                  className="ms-auto -mx-1.5 -my-1.5 cursor-pointer"
+                                  onClick={() =>
+                                    handleNotificationStatusChange(item._id)
+                                  }
+                                >
+                                  {item.status}
+                                </p>
+                              </div>
+                              <div className="border-b dark:border-b-[#ffffff47] border-b-[#00000f] mb-2 px-4">
+                                <p className="text-black dark:text-white">
+                                  {item.message}
+                                </p>
+                                <p className="text-black dark:text-white">
+                                  {item?.createdAt}
+                                </p>
+                              </div>
+                            </div>
+                          ))}
+                      </ul>
+                    </div>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              )}
+            </div>
             {/* shopping card */}
             <Sheet>
               <SheetTrigger>
@@ -240,7 +327,7 @@ export function Navbar() {
                           d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                         />
                       </svg>
-                      Account
+                      profile
                       <svg
                         className="w-4 h-4 text-gray-900 dark:text-white ms-1"
                         aria-hidden="true"

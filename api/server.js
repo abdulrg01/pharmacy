@@ -10,6 +10,7 @@ const cors = require('cors')
 const corsOptions = require("./config/corsOptions");
 const connectDB = require("./config/dbConn");
 const mongoose = require("mongoose");
+const helmet = require('helmet');
 const { v2: cloudinary } = require("cloudinary");
 const PORT = process.env.PORT || 3500;
 
@@ -23,6 +24,8 @@ cloudinary.config({
   api_key: process.env.CLOUD_API_KEY,
   api_secret: process.env.CLOUD_SECRET_KEY,
 });
+
+app.use(helmet());
 
 app.use(logger);
 
@@ -39,6 +42,7 @@ app.use("/users", require("./routes/user.routes"));
 app.use("/auth", require("./routes/auth.routes"));
 app.use("/review", require("./routes/review.routes"));
 app.use("/order", require("./routes/order.routes"));
+app.use("/notification", require("./routes/notification.routes"));
 
 app.all("*", (req, res) => {
   res.status(404);

@@ -14,12 +14,13 @@ const createOrderService = async (userId, orderData) => {
 };
 
 const getOrdersByUserService = async (userId) => {
-  return await Order.find({ user: userId })
+  return await Order.find({ user: userId }).sort({ createdAt: -1 });
 };
 
 const getAllOrdersService = async () => {
   return await Order.find()
-    .populate("user", "name email")
+    .sort({ createdAt: -1 })
+    .populate("user", "name email");
 };
 
 const updateOrderStatusService = async (orderId, status) => {

@@ -130,6 +130,7 @@ export function OrderConfirmation() {
                     className="max-w-92 w-full"
                     name="phone"
                     id="phone"
+                    required
                     value={form.phone}
                     onChange={handleChange}
                   />
@@ -142,6 +143,7 @@ export function OrderConfirmation() {
                     className="max-w-92 w-full"
                     name="street"
                     id="street"
+                    required
                     value={form.street}
                     onChange={handleChange}
                   />

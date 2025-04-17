@@ -188,3 +188,48 @@ export const getAllReviews = async () => {
     throw error;
   }
 };
+// Admin
+export const getAllNotifications = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/get-notification`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("getAllNotifications Error:", error);
+    throw error;
+  }
+};
+
+// Admin
+export const updateNotification = async (id) => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/notification/update-notification/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("updateNotification Error:", error);
+    throw error;
+  }
+};

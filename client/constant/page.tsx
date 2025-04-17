@@ -232,7 +232,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 23,
+    id: 24,
     name: "AC-FLU",
     description:
       "For the relief of allergy symptoms like hay fever, food allergies, urticaria, drug reactions.",
@@ -242,7 +242,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 24,
+    id: 25,
     name: "Glucose D",
     description:
       "For the relief of allergy symptoms like hay fever, food allergies, urticaria, drug reactions.",
@@ -252,7 +252,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 25,
+    id: 26,
     name: "Astymin Liquid",
     description:
       "Astymin is a nutritional supplement containing a unique blend of essential amino acids and vitamins. It contains 8 essential amino acids and 11 vitamins. It comes as 110ml liquid in a glass bottle.",
@@ -262,7 +262,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 26,
+    id: 27,
     name: "Glimepiride 2mg plus 500mg Metformin Caplet",
     description: "Used in management of Type II Diabetes Mellitus",
     price: 500,
@@ -271,7 +271,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 27,
+    id: 28,
     name: "Diatab: Gilbenclamide 5mg Tablet",
     description: "Used in management of Type II Diabetes Mellitus",
     price: 500,
@@ -280,7 +280,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 28,
+    id: 29,
     name: "Diamet: Metformin 500mg Tablet",
     description: "Used in management of Type II Diabetes Mellitus",
     price: 500,
@@ -289,7 +289,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 29,
+    id: 30,
     name: "Ramitace: Ramipril 5mg Tablet",
     description: "Used in management of Hypertension.",
     price: 2500,
@@ -298,7 +298,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 30,
+    id: 31,
     name: "Cardovasc Retard: Nifedipine 20mg Tablet",
     description: "Used in management of Hypertension.",
     price: 2500,
@@ -307,7 +307,7 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 31,
+    id: 32,
     name: "Metronidazole flagil 200mg Tablet",
     description: "Antibiotic for bacterial infections.",
     price: 200,
@@ -316,36 +316,36 @@ export const drugsData = [
     stock: 65,
   },
   {
-    id: 32,
+    id: 33,
     name: "Piroxicam feldin",
     description: "Used in pain relief.",
     price: 150,
     category: "painRelief",
-    image: "/pharmacy/feldin.jpeg",
+    image: "/pharmacy/peldin.jpeg",
     stock: 65,
   },
   {
-    id: 33,
+    id: 34,
     name: "Hyosine Buscopen",
     description:
       "Hyoscine butylbromide is an antispasmodic medicine which is taken to relieve cramps in the stomach, intestines or bladder",
     price: 200,
     category: "antibiotic",
-    image: "/pharmacy/hyosin.jpeg",
+    image: "/pharmacy/hyosine.jpeg",
     stock: 65,
   },
   {
-    id: 34,
+    id: 35,
     name: "Zinc Sulphate 20mg",
     description:
       "Used for zinc deficiency, diarrhea, and Wilson disease. Zinc is also used for acne, diabetes, anorexia, burns, and many other purposes.",
     price: 200,
     category: "antibiotic",
-    image: "/pharmacy/zinc.jpeg",
+    image: "/pharmacy/zink.jpeg",
     stock: 65,
   },
   {
-    id: 35,
+    id: 36,
     name: "Cencold suspension",
     description:
       "To moderate pain|Pyrexia. Pain|Pyrexia with discomfort. Post immunisation pyrexia in infants.",

@@ -47,10 +47,10 @@ export default function AllOrders() {
                 <div className="flex flex-wrap justify-between items-center">
                   <div>
                     <p className="text-sm text-gray-500">
-                      Order ID: {order._id}
+                      Phone: {order.shippingAddress.phone}
                     </p>
                     <p className="text-sm text-gray-500">
-                      Date: {order.createdAt}
+                      Address: {order.shippingAddress.street}
                     </p>
                   </div>
                   <div className="font-bold text-lg">
