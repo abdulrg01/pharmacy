@@ -61,7 +61,6 @@ export function Navbar() {
     const fetchNotification = async () => {
       try {
         const notificationData = await getAllNotifications();
-        console.log("AllNotification:", notificationData);
         setNotifications(
           notificationData.notification.filter(
             (item) => item.status === "unread"

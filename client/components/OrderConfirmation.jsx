@@ -64,9 +64,7 @@ export function OrderConfirmation() {
         phone: form.phone,
       },
     };
-    createOrder(orderData).then((data) => {
-      console.log("Order response:", data);
-    });
+    createOrder(orderData).then((data) => {});
     dispatch(
       addOrder({
         items: cart,
@@ -156,9 +154,7 @@ export function OrderConfirmation() {
                   <span className="text-lg font-semibold">
                     Kudin da zaka biya:
                   </span>
-                  <span className="text-lg font-bold">
-                    N{totalPrice + 500}
-                  </span>
+                  <span className="text-lg font-bold">N{totalPrice + 500}</span>
                 </div>
               </div>
             </div>

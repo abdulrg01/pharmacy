@@ -26,13 +26,11 @@ export default function SigninDialog({ openDialog, closeDialog }) {
         { headers: { Authorization: `Bearer ${tokenResponse.access_token}` } }
       );
       const user = userInfo?.data;
-      console.log(user);
       const data = await socialAuth({
         name: user.name,
         email: user.email,
         avatar: user.picture,
       });
-      console.log(data);
       localStorage.setItem("token", data.token);
       window.location.reload();
       closeDialog(false);

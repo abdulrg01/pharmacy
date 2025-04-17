@@ -12,7 +12,6 @@ export default function AllReviews() {
     const fetchUser = async () => {
       try {
         const reviewsData = await getAllReviews();
-        console.log("Allreviews:", reviewsData);
         setReviews(reviewsData);
       } catch (error) {
         console.log("Review fetch error:", error);

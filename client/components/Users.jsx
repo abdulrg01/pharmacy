@@ -13,7 +13,6 @@ export default function Users() {
     const fetchUsers = async () => {
       try {
         const usersData = await getAllUsers();
-        console.log("Allusers:", usersData);
         setData(usersData);
       } catch (error) {
         console.log("Order fetch error:", error);

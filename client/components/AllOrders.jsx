@@ -13,7 +13,6 @@ export default function AllOrders() {
     const fetchOrders = async () => {
       try {
         const ordersData = await getAllOrders();
-        console.log("AllOrders:", ordersData);
         setOrders(ordersData);
       } catch (error) {
         console.log("Order fetch error:", error);

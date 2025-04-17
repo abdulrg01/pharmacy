@@ -21,7 +21,6 @@ export default function AddComment({ addCommentDialog, closeCommentDialog }) {
     e.preventDefault();
     try {
       const data = await addComment(comment);
-      console.log(data);
       alert("Thanks for the review");
       closeCommentDialog(false);
       router.push("/");
