@@ -36,7 +36,7 @@ export default function AnimatedBurger() {
       >
         <Image
           src={burgerImages[currentImageIndex] || "/placeholder.svg"}
-          alt="Exploded burger with ingredients"
+          alt="Sauki med"
           width={300}
           height={400}
           className="object-contain"

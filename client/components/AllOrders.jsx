@@ -52,6 +52,9 @@ export default function AllOrders() {
                     <p className="text-sm text-gray-500">
                       Address: {order.shippingAddress.street}
                     </p>
+                    <p className="text-sm text-gray-500">
+                      Name: {order.user.name}
+                    </p>
                   </div>
                   <div className="font-bold text-lg">
                     Total: N{order.totalAmount}
@@ -78,11 +81,11 @@ export default function AllOrders() {
                       <div className="flex-1">
                         <h4 className="font-medium">{item.name}</h4>
                         <p className="text-sm text-gray-500">
-                          ${item.price} x {item.quantity}
+                          N{item.price} x {item.quantity}
                         </p>
                       </div>
                       <div className="font-medium">
-                        ${item.price * item.quantity}
+                        N{item.price * item.quantity}
                       </div>
                     </div>
                   ))}

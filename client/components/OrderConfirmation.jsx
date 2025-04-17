@@ -127,7 +127,7 @@ export function OrderConfirmation() {
                   <Input
                     type="text"
                     placeholder="Phone"
-                    className="max-w-92 w-full"
+                    className="md:max-w-92 max-w-52 w-full"
                     name="phone"
                     id="phone"
                     required
@@ -140,7 +140,7 @@ export function OrderConfirmation() {
                   <Input
                     type="text"
                     placeholder="Street"
-                    className="max-w-92 w-full"
+                    className="md:max-w-92 max-w-52 w-full"
                     name="street"
                     id="street"
                     required

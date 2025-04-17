@@ -113,11 +113,11 @@ export function OrderHistory() {
                           <div className="flex-1">
                             <h4 className="font-medium">{item.name}</h4>
                             <p className="text-sm text-gray-500">
-                              ${item.price} x {item.quantity}
+                              N{item.price} x {item.quantity}
                             </p>
                           </div>
                           <div className="font-medium">
-                            ${item.price * item.quantity}
+                            N{item.price * item.quantity}
                           </div>
                         </div>
                       ))}
