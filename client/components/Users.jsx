@@ -7,14 +7,14 @@ import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 
 export default function Users() {
-  const [users, setUsers] = useState();
+  const [data, setData] = useState();
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         const usersData = await getAllUsers();
         console.log("Allusers:", usersData);
-        setUsers(usersData);
+        setData(usersData);
       } catch (error) {
         console.log("Order fetch error:", error);
       }
@@ -35,13 +35,13 @@ export default function Users() {
         <h1 className="text-3xl font-bold">All Users</h1>
       </div>
 
-      {users?.length === 0 ? (
+      {data?.users.length === 0 ? (
         <div className="text-center py-12 bg-gray-50 rounded-lg">
           <h2 className="text-2xl font-semibold mb-2">No Users Yet</h2>
         </div>
       ) : (
         <div className="space-y-8">
-          {users?.map((user) => (
+          {data?.users.map((user) => (
             <ul
               key={user._id}
               className="max-w-md divide-y divide-gray-200 dark:divide-gray-700"

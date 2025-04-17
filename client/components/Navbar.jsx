@@ -364,7 +364,7 @@ export function Navbar() {
                               href="/allorders"
                               className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                             >
-                              All Orders
+                              Orders
                             </a>
                           </li>
                         )}
@@ -374,7 +374,7 @@ export function Navbar() {
                               href="/allReviews"
                               className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
                             >
-                              All Reviews
+                             Reviews
                             </a>
                           </li>
                         )}

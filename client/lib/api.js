@@ -193,7 +193,7 @@ export const getAllNotifications = async () => {
   const token = localStorage.getItem("token");
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_BASE_URL}/get-notification`,
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/notification/get-notification`,
       {
         method: "GET",
         headers: {
