@@ -654,3 +654,5 @@
 20250417	01:58:02	603a57c5-5d06-4678-b90a-1aa6e6f86f94	OPTIONS	/notification/get-notification	http://localhost:3000
 20250417	01:58:06	6d42ab64-d959-40a9-80c2-ba4db62419d3	GET	/notification/get-notification	http://localhost:3000
 20250417	01:58:17	74d76bba-2ad4-4e49-88b5-7b80c155a422	GET	/notification/get-notification	http://localhost:3000
+20250417	04:08:29	e10ca260-68ef-4386-bec0-652891c3121f	GET	/users	undefined
+20250417	04:09:51	d9d46220-abbb-4122-bbb9-8ca3ddffcc6b	GET	/users	undefined

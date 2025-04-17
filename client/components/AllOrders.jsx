@@ -10,7 +10,7 @@ export default function AllOrders() {
   const [orders, setOrders] = useState();
 
   useEffect(() => {
-    const fetchUser = async () => {
+    const fetchOrders = async () => {
       try {
         const ordersData = await getAllOrders();
         console.log("AllOrders:", ordersData);
@@ -20,7 +20,7 @@ export default function AllOrders() {
       }
     };
 
-    fetchUser();
+    fetchOrders();
   }, []);
 
   return (

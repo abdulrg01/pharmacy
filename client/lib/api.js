@@ -233,3 +233,27 @@ export const updateNotification = async (id) => {
     throw error;
   }
 };
+
+
+// Admin
+export const getAllUsers = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_API_BASE_URL}/users`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Order Creation Error:", error);
+    throw error;
+  }
+};

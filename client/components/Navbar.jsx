@@ -378,6 +378,16 @@ export function Navbar() {
                             </a>
                           </li>
                         )}
+                        {user && user.user?.isAdmin && (
+                          <li>
+                            <a
+                              href="/allUsers"
+                              className="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
+                            >
+                              Users
+                            </a>
+                          </li>
+                        )}
                       </ul>
 
                       <div
