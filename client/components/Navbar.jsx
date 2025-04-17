@@ -155,7 +155,7 @@ export function Navbar() {
                 >
                   <DropdownMenuTrigger asChild>
                     <div className="relative cursor-pointer m-2">
-                      <IoMdNotifications className="text-2xl cursor-pointer dark:text-white text-black" />
+                      <IoMdNotifications className="text-2xl cursor-pointer dark:text-white text-[#035e85]" />
                       <span className=" absolute -top-2 -right-2 bg-red-500 rounded-full w-[20px] text-[12px] flex items-center justify-center text-white">
                         {notifications && notifications?.length}
                       </span>

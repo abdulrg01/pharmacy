@@ -8,7 +8,7 @@ export const navLinks = [
 export const burgerImages = [
   "/pharmacy/emzor1.png",
   "/pharmacy/astymin.png",
-  "/pharmacy/emzor3.jpg",
+  "/pharmacy/emzor3.png",
   "/pharmacy/chemironIron.png",
   "/pharmacy/dana.png",
 ];
