@@ -49,7 +49,7 @@ export function AnimatedGuideIcon() {
 
   return (
     <motion.div
-      className="fixed bottom-20 right-4 z-50 md:hidden"
+      className="fixed bottom-24 right-4 z-50 md:hidden"
       initial={{ opacity: 0, scale: 0.8, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.8, y: 20 }}

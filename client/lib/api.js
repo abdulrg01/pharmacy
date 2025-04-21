@@ -234,7 +234,6 @@ export const updateNotification = async (id) => {
   }
 };
 
-
 // Admin
 export const getAllUsers = async () => {
   const token = localStorage.getItem("token");

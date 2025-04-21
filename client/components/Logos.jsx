@@ -29,16 +29,6 @@ export default function Logos() {
             </div>
             <div className="flex flex-col items-center gap-1">
               <Image
-                src="/pharmacy/saukimeds.jpg"
-                alt=""
-                width={150}
-                height={150}
-                className="rounded-lg"
-              />
-              <p className="text-white font-semibold">Sauki delivery</p>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <Image
                 src="/pharmacy/eyedrop.jpeg"
                 alt=""
                 width={150}
@@ -56,16 +46,6 @@ export default function Logos() {
                 className="rounded-lg"
               />
               <p className="text-white font-semibold">Cold & Cough</p>
-            </div>
-            <div className="flex flex-col items-center gap-1">
-              <Image
-                src="/pharmacy/saukimed.jpg"
-                alt=""
-                width={150}
-                height={150}
-                className="rounded-lg"
-              />
-              <p className="text-white font-semibold">Medicine delivery</p>
             </div>
             <div className="flex flex-col items-center gap-1">
               <Image
