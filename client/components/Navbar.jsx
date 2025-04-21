@@ -404,9 +404,9 @@
 //       </DropdownMenuContent>
 //     </DropdownMenu>
 //   ) : (
-//     <div onClick={() => setOpenDialog(true)}>
-//       <User2 size={20} cursor={"pointer"} />
-//     </div>
+// <div onClick={() => setOpenDialog(true)}>
+//   <User2 size={20} cursor={"pointer"} />
+// </div>
 //   )}
 // </div>
 //             {/* Mobile Navigation */}
@@ -506,7 +506,6 @@ import AddComment from "./AddComment";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const cart = useAppSelector(selectCartItems);
@@ -604,7 +603,7 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white py-4 px-3 md:px-8 shadow-sm">
+    <header className="sticky top-0 z-50 bg-white py-4 px-3 md:px-8">
       <div className="max-w-6xl mx-auto md:px-7 flex items-center justify-between">
         {/* Mobile Menu Button */}
         <Sheet>
@@ -697,95 +696,14 @@ export function Navbar() {
                     {link.name}
                   </Link>
                 ))}
-
-                <div>
-                  <button
-                    onClick={() => setDropdownOpen((prev) => !prev)}
-                    className="relative flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-white md:dark:hover:text-blue-500 dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent"
+                {!user && (
+                  <Button
+                    onClick={() => setOpenDialog(true)}
+                    className="bg-purple-600 text-white hover:bg-purple-700 mt-4"
                   >
-                    Profile{" "}
-                    <svg
-                      className="w-2.5 h-2.5 ms-2.5"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 10 6"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="m1 1 4 4 4-4"
-                      />
-                    </svg>
-                  </button>
-
-                  {dropdownOpen && (
-                    <div className="z-10 absolute top- font-normal bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700 dark:divide-gray-600">
-                      <ul
-                        className="py-2 text-sm text-gray-700 dark:text-gray-400"
-                        aria-labelledby="dropdownLargeButton"
-                      >
-                        <li>
-                          <a
-                            href="/orders"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            My Orders
-                          </a>
-                        </li>
-                        {user && user.user?.isAdmin && (
-                          <li>
-                            <a
-                              href="/allorders"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                              Orders
-                            </a>
-                          </li>
-                        )}
-                        {user && user.user?.isAdmin && (
-                          <li>
-                            <a
-                              href="/allReviews"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                              Reviews
-                            </a>
-                          </li>
-                        )}
-                        {user && user.user?.isAdmin && (
-                          <li>
-                            <a
-                              href="/allUsers"
-                              className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                            >
-                              Users
-                            </a>
-                          </li>
-                        )}
-                      </ul>
-                      {user && (
-                        <div
-                          onClick={() => setAddCommentDialog(true)}
-                          className="text-sm font-medium text-gray-900 dark:text-white cursor-pointer"
-                        >
-                          <a
-                            href="#"
-                            className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                          >
-                            Add a Review
-                          </a>
-                        </div>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <Button className="bg-purple-600 text-white hover:bg-purple-700 mt-4">
-                  Sign In
-                </Button>
+                    Sign In
+                  </Button>
+                )}
               </nav>
             </div>
           </SheetContent>

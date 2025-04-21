@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import { usePathname } from "next/navigation"
-import Link from "next/link"
-import { Home, Search, Heart, ShoppingBag, User } from "lucide-react"
+import { usePathname } from "next/navigation";
+import Link from "next/link";
+import { Home, Search, Heart, ShoppingBag, User } from "lucide-react";
 
 export function MobileFooterNav() {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const navItems = [
     {
@@ -19,8 +19,8 @@ export function MobileFooterNav() {
       icon: Search,
     },
     {
-      name: "Wishlist",
-      href: "/wishlist",
+      name: "Store",
+      href: "/drug-stores",
       icon: Heart,
     },
     {
@@ -33,13 +33,13 @@ export function MobileFooterNav() {
       href: "/account",
       icon: User,
     },
-  ]
+  ];
 
   return (
     <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white border-t py-2 px-4">
       <div className="flex justify-between items-center">
         {navItems.map((item) => {
-          const isActive = pathname === item.href
+          const isActive = pathname === item.href;
           return (
             <Link
               key={item.name}
@@ -51,9 +51,9 @@ export function MobileFooterNav() {
               <item.icon className="h-5 w-5 mb-1" />
               <span className="text-xs">{item.name}</span>
             </Link>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
