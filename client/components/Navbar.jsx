@@ -502,6 +502,7 @@ import {
 } from "@/lib/store/searchSlice";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
+import { IoMdNotifications } from "react-icons/io";
 import AddComment from "./AddComment";
 import { getUserProfile, updateNotification } from "@/lib/api";
 import SigninDialog from "./SigninDialog";
