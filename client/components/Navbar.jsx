@@ -699,7 +699,7 @@ export function Navbar() {
                 {!user && (
                   <Button
                     onClick={() => setOpenDialog(true)}
-                    className="bg-purple-600 text-white hover:bg-purple-700 mt-4"
+                    className="mt-4"
                   >
                     Sign In
                   </Button>
