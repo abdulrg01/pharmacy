@@ -287,12 +287,12 @@
 //                               N{totalPrice}
 //                             </h2>
 //                           </div>
-//                           <Button
-//                             className="w-full bg-green-500"
-//                             onClick={handleProceedToCheckout}
-//                           >
-//                             Proceed to Checkout
-//                           </Button>
+// <Button
+//   className="w-full"
+//   onClick={handleProceedToCheckout}
+// >
+//   Proceed to Checkout
+// </Button>
 //                         </div>
 //                       </div>
 //                     ) : (
@@ -503,6 +503,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import AddComment from "./AddComment";
+import { getUserProfile, updateNotification } from "@/lib/api";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -697,10 +698,7 @@ export function Navbar() {
                   </Link>
                 ))}
                 {!user && (
-                  <Button
-                    onClick={() => setOpenDialog(true)}
-                    className="mt-4"
-                  >
+                  <Button onClick={() => setOpenDialog(true)} className="mt-4">
                     Sign In
                   </Button>
                 )}
@@ -895,7 +893,7 @@ export function Navbar() {
                         <div className="flex-1">
                           <p className="font-medium">{item.name}</p>
                           <p className="text-sm text-gray-500">
-                            ${item.price.toFixed(2)} x {item.quantity}
+                            ${item.price} x {item.quantity}
                           </p>
                         </div>
                         <div className="flex items-center gap-1">
@@ -931,9 +929,7 @@ export function Navbar() {
                   <div className="p-4 border-t">
                     <div className="flex justify-between mb-4">
                       <span className="font-medium">Total:</span>
-                      <span className="font-bold">
-                        ${totalPrice.toFixed(2)}
-                      </span>
+                      <span className="font-bold">${totalPrice}</span>
                     </div>
                     <Button
                       className="w-full"

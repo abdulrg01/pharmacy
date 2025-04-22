@@ -12,7 +12,7 @@ export default function HomeSection() {
           </div>
           <div className="w-full md:w-1/2 space-y-2 -mt-20 md:mt-0">
             <h1 className="text-5xl md:text-6xl max-sm:text-center font-bold text-white">
-              Sauki medicine
+              MediStore
             </h1>
             <p className="text-xl max-sm:text-center text-white">
               Zamu kawo muku magani har gida a funtua. Yi mana magana ta whatsap

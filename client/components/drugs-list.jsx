@@ -170,7 +170,7 @@ export function DrugsList({ drugs }) {
   return (
     <section className="py-8" id="drugs-list-top">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
-        <h2 className="text-3xl font-bold">Available Medicines</h2>
+        <h2 className="text-3xl font-bold">Popular Medicines</h2>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <div className="relative flex-1 sm:w-64">
