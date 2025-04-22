@@ -796,7 +796,7 @@ export function Navbar() {
 
         {/* Sign In Button and Cart */}
         <div className="flex items-center gap-4">
-          <Button className="bg-[#035e85] text-white hover:bg-cyan-600 hidden rounded-full font-semibold md:flex">
+          <Button onClick={() => setOpenDialog(true)} className="bg-[#035e85] text-white hover:bg-cyan-600 hidden rounded-full font-semibold md:flex">
             Sign In
           </Button>
 
