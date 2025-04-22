@@ -504,6 +504,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import AddComment from "./AddComment";
 import { getUserProfile, updateNotification } from "@/lib/api";
+import SigninDialog from "./SigninDialog";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
