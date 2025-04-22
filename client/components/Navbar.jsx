@@ -461,10 +461,10 @@
 //           </div>
 //         </div>
 //       </div>
-//       <SigninDialog
-//         openDialog={openDialog}
-//         closeDialog={(v) => setOpenDialog(v)}
-//       />
+// <SigninDialog
+//   openDialog={openDialog}
+//   closeDialog={(v) => setOpenDialog(v)}
+// />
 // <AddComment
 //   addCommentDialog={addCommentDialog}
 //   closeCommentDialog={(v) => setAddCommentDialog(v)}
@@ -515,6 +515,7 @@ export function Navbar() {
   const pathname = usePathname();
   const searchQuery = useAppSelector(selectSearchQuery);
   const [localSearchQuery, setLocalSearchQuery] = useState("");
+  const [openDialog, setOpenDialog] = useState(false);
 
   const [addCommentDialog, setAddCommentDialog] = useState(false);
   const [user, setUser] = useState();
@@ -796,7 +797,10 @@ export function Navbar() {
 
         {/* Sign In Button and Cart */}
         <div className="flex items-center gap-4">
-          <Button onClick={() => setOpenDialog(true)} className="bg-[#035e85] text-white hover:bg-cyan-600 hidden rounded-full font-semibold md:flex">
+          <Button
+            onClick={() => setOpenDialog(true)}
+            className="bg-[#035e85] text-white hover:bg-cyan-600 hidden rounded-full font-semibold md:flex"
+          >
             Sign In
           </Button>
 
@@ -944,7 +948,10 @@ export function Navbar() {
           </DropdownMenu>
         </div>
       </div>
-
+      <SigninDialog
+        openDialog={openDialog}
+        closeDialog={(v) => setOpenDialog(v)}
+      />
       <AddComment
         addCommentDialog={addCommentDialog}
         closeCommentDialog={(v) => setAddCommentDialog(v)}
