@@ -34,7 +34,7 @@ export function DrugDetails({ id }) {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 pb-20 md:pb-0">
       <Button variant="ghost" onClick={() => router.push("/")} className="mb-6">
         <ArrowLeft className="mr-2 h-4 w-4" />
         Back to Products

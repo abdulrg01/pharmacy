@@ -80,7 +80,7 @@ export function OrderConfirmation() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 md:pb-0 pb-20">
       <div className="max-w-2xl mx-auto">
         {!isConfirmed ? (
           <>

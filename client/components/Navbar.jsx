@@ -1,34 +1,5 @@
 // "use client";
-
-// import { usePathname, useRouter } from "next/navigation";
-// import { Button } from "@/components/ui/button";
-// import { PlusCircle, MinusCircle, User2 } from "lucide-react";
-// import { ShoppingCart, Menu } from "lucide-react";
-// import { useAppDispatch, useAppSelector } from "@/lib/store/hooks";
-// import {
-//   selectCartItems,
-//   selectTotalItems,
-//   selectTotalPrice,
-//   addToCart,
-//   removeFromCart,
-// } from "@/lib/store/cartSlice";
-// import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-// import Link from "next/link";
 // import { navLinks } from "@/constant/page";
-// import SigninDialog from "./SigninDialog";
-// import { useEffect, useState } from "react";
-// import { IoMdNotifications } from "react-icons/io";
-// import {
-//   getAllNotifications,
-//   getUserProfile,
-//   updateNotification,
-// } from "@/lib/api";
-// import AddComment from "./AddComment";
 
 // export function Navbar() {
 // const dispatch = useAppDispatch();
@@ -504,8 +475,13 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
 import { IoMdNotifications } from "react-icons/io";
 import AddComment from "./AddComment";
-import { getUserProfile, updateNotification } from "@/lib/api";
+import {
+  getUserProfile,
+  updateNotification,
+  getAllNotifications,
+} from "@/lib/api";
 import SigninDialog from "./SigninDialog";
+import { ClipLoader } from "react-spinners";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -523,6 +499,7 @@ export function Navbar() {
   const [user, setUser] = useState();
   const [isOpenNotification, setIsOpenNotification] = useState(false);
   const [notifications, setNotifications] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Initialize local search query from Redux state
   useEffect(() => {
@@ -567,10 +544,12 @@ export function Navbar() {
   }, []);
 
   const handleProceedToCheckout = async () => {
+    setLoading(true);
     if (cart.length === 0) return;
 
     try {
       const userData = await getUserProfile();
+      setIsOpen(false)
       // Proceed if the user is valid
       router.push("/order-confirmation");
     } catch (error) {
@@ -581,6 +560,7 @@ export function Navbar() {
         setOpenDialog(true);
       }
     }
+    setLoading(false);
   };
 
   const handleNotificationStatusChange = async (id) => {
@@ -943,7 +923,15 @@ export function Navbar() {
                       className="w-full"
                       onClick={handleProceedToCheckout}
                     >
-                      Proceed to Checkout
+                      {loading ? (
+                        <ClipLoader
+                          color="#007bff"
+                          loading={loading}
+                          size={40}
+                        />
+                      ) : (
+                        "Proceed to Checkout"
+                      )}
                     </Button>
                   </div>
                 </>
